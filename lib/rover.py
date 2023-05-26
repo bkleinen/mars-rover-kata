@@ -39,7 +39,9 @@ class MoveCommand(Command):
         self.state = rover_state
         
     
-    def execute(self):
+    def execute(self, state = None):
+        if state is not None:
+            self.state = state
         if "f" == self.command:
             y = self.state.y + 1
         elif "b" == self.command:
