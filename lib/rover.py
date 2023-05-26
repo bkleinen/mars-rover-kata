@@ -10,22 +10,7 @@ class Rover:
         commands = [Command.for_str(c) for c in command_chars]
         for command in commands: 
             self.state = command.execute(self.state)
-        return
-        for command in command_chars:
-            if "f" == command:
-                self.state = Command.for_str(command).execute(self.state)
-            elif "b" == command:
-                 self.state = Command.for_str(command).execute(self.state)
-            elif "r" == command:
-                i = RoverState.directions.index(self.state.direction)
-                i = (i + 1) % len(RoverState.directions)
-                self.state.direction = RoverState.directions[i]
-            elif "l" == command: 
-                i = RoverState.directions.index(self.state.direction)
-                i = (i - 1) % len(RoverState.directions)
-                self.state.direction = RoverState.directions[i]
-        
-
+          
     def position(self):
         return self.state
 class Command:
