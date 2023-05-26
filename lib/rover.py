@@ -5,16 +5,22 @@ class Rover:
         self.x = rover_state.x
         self.y = rover_state.y
 
-    def execute(self, command):
-        if "f" == command:
-            self.state.y += 1
-        elif "b" == command:
-            self.state.y -= 1
-        elif "r" == command: 
-            self.state.direction = "E"
-        elif "l" == command: 
-            self.state.direction = "W"
-        pass
+    def execute(self, input):
+        commands = list(input)
+        for command in commands:
+            if "f" == command:
+                self.state.y += 1
+            elif "b" == command:
+                self.state.y -= 1
+            elif "r" == command:
+                i = RoverState.directions.index(self.state.direction)
+                i = (i + 1) % len(RoverState.directions)
+                self.state.direction = RoverState.directions[i]
+            elif "l" == command: 
+                i = RoverState.directions.index(self.state.direction)
+                i = (i - 1) % len(RoverState.directions)
+                self.state.direction = RoverState.directions[i]
+        
 
     def position(self):
         return self.state
@@ -24,3 +30,4 @@ class RoverState:
     x: int
     y: int
     direction: str
+    directions = ["N", "E", "S", "W"]
