@@ -13,6 +13,8 @@ testcases = [
 
     (RS(2,2,"N"), "l", RS(2,2,"W")),
     (RS(3,3,"N"), "rr", RS(3,3,"S")),
+    (RS(3,3,"N"), "ffr", RS(3,5,"E")),
+   # (RS(3,3,"N"), "ffrfflf", RS(5,6,"N")),
              ]
 @pytest.mark.parametrize("init,command,expected", testcases)
 def test_rover_move(init, command, expected):
