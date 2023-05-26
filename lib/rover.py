@@ -30,7 +30,7 @@ class Command:
         if input in ['f', 'b']:
             return  MoveCommand(input)
         if input in ['l', 'r']:
-            return  TurnCommand(input, rover_state)
+            return  TurnCommand(input)
         
     pass
 class MoveCommand(Command):
