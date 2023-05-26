@@ -9,9 +9,9 @@ class Rover:
         commands = list(input)
         for command in commands:
             if "f" == command:
-                self.state = Command.for_str(input,self.state).execute()
+                self.state = Command.for_str(input).execute(self.state)
             elif "b" == command:
-                 self.state = Command.for_str(input,self.state).execute()
+                 self.state = Command.for_str(input).execute(self.state)
             elif "r" == command:
                 i = RoverState.directions.index(self.state.direction)
                 i = (i + 1) % len(RoverState.directions)
