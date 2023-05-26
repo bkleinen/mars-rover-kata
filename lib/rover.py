@@ -8,8 +8,12 @@ class Rover:
     def execute(self, command):
         if "f" == command:
             self.state.y += 1
-        else:
+        elif "b" == command:
             self.state.y -= 1
+        elif "r" == command: 
+            self.state.direction = "E"
+        elif "l" == command: 
+            self.state.direction = "W"
         pass
 
     def position(self):
