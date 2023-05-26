@@ -29,7 +29,9 @@ class Command:
     def for_str(cls, input, rover_state = None):
         if input in ['f', 'b']:
             return  MoveCommand(input, rover_state)
-        pass
+        if input in ['l', 'r']:
+            return  TurnCommand(input, rover_state)
+        
     pass
 class MoveCommand(Command):
     def __init__(self, input, rover_state):
@@ -45,7 +47,10 @@ class MoveCommand(Command):
         return RoverState(self.state.x, y, self.state.direction)
     pass
 class TurnCommand(Command):
-    pass
+    def __init__(self, input, rover_state):
+        self.command = input
+        self.state = rover_state
+    
 
 @dataclass(frozen=False)
 class RoverState:

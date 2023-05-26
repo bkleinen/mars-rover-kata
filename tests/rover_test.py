@@ -26,4 +26,12 @@ def test_command_for_str():
     c = Command.for_str('f')
     assert str(type(c)) == "<class 'lib.rover.MoveCommand'>"
 
+def test_command_for_str_b():
+    c = Command.for_str('b')
+    assert str(type(c)) == "<class 'lib.rover.MoveCommand'>"
+
+def test_command_for_str():
+    c = Command.for_str('l')
+    assert str(type(c)) == "<class 'lib.rover.TurnCommand'>"
+
     
