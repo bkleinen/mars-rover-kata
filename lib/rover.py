@@ -9,7 +9,8 @@ class Rover:
         command_chars = list(input)
         commands = [Command.for_str(c) for c in command_chars]
         for command in commands: 
-            command.execute(self.state)
+            self.state = command.execute(self.state)
+        return
         for command in command_chars:
             if "f" == command:
                 self.state = Command.for_str(command).execute(self.state)
