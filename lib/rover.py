@@ -8,6 +8,8 @@ class Rover:
     def execute(self, input):
         command_chars = list(input)
         commands = [Command.for_str(c) for c in command_chars]
+        for command in commands: 
+            command.execute(self.state)
         for command in command_chars:
             if "f" == command:
                 self.state = Command.for_str(command).execute(self.state)
@@ -58,6 +60,17 @@ class TurnCommand(Command):
         self.command = input
         self.state = rover_state
     
+    def execute(self, state):
+        if "r" == self.command:
+            i = RoverState.directions.index(state.direction)
+            i = (i + 1) % len(RoverState.directions)
+            new_direction = RoverState.directions[i]
+        elif "l" == self.command: 
+            i = RoverState.directions.index(state.direction)
+            i = (i - 1) % len(RoverState.directions)
+            new_direction = RoverState.directions[i]
+        
+
 
 @dataclass(frozen=False)
 class RoverState:
