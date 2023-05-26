@@ -43,6 +43,15 @@ class MoveCommand(Command):
     def execute(self, state = None):
         if state is not None:
             self.state = state
+        state = self.state
+        deltas = {
+            'f' :  {'N' : (0,1), 'S' : (0,-1), 'W' : (-1, 0), 'E': (1, 0)},
+            'b' :  {'N' : (0,-1), 'S' : (0,1), 'W' : (1, 0), 'E': (-1, 0)}
+        }
+        delta = deltas[self.command][state.direction]
+        return RoverState(state.x + delta[0], state.y + delta[1], state.direction)
+        if 'b' == self.command:
+            delta[0]
         if "f" == self.command:
             y = self.state.y + 1
         elif "b" == self.command:
