@@ -32,8 +32,17 @@ class Command:
         pass
     pass
 class TurnCommand(Command):
-    def __init__(self, input):
-        pass
+    def __init__(self, input, rover_state):
+        self.command = input
+        self.state = rover_state
+        
+    
+    def execute(self):
+        if "f" == self.command:
+            self.state.y += 1
+        elif "b" == self.command:
+            self.state.y -= 1
+        return RoverState(self.state.x, self.state.y, self.state.direction)
     pass
 @dataclass
 class RoverState:
