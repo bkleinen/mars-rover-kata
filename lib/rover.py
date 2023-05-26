@@ -9,9 +9,9 @@ class Rover:
         commands = list(input)
         for command in commands:
             if "f" == command:
-                self.state.y += 1
+                self.state = Command.for_str(input,self.state).execute()
             elif "b" == command:
-                self.state.y -= 1
+                 self.state = Command.for_str(input,self.state).execute()
             elif "r" == command:
                 i = RoverState.directions.index(self.state.direction)
                 i = (i + 1) % len(RoverState.directions)
@@ -26,12 +26,12 @@ class Rover:
         return self.state
 class Command:
     @classmethod
-    def from_str(cls, input):
-        if input in ['l', 'r']:
-            return  TurnCommand(input)
+    def for_str(cls, input, rover_state):
+        if input in ['f', 'b']:
+            return  MoveCommand(input, rover_state)
         pass
     pass
-class TurnCommand(Command):
+class MoveCommand(Command):
     def __init__(self, input, rover_state):
         self.command = input
         self.state = rover_state
@@ -39,12 +39,15 @@ class TurnCommand(Command):
     
     def execute(self):
         if "f" == self.command:
-            self.state.y += 1
+            y = self.state.y + 1
         elif "b" == self.command:
-            self.state.y -= 1
-        return RoverState(self.state.x, self.state.y, self.state.direction)
+            y = self.state.y - 1
+        return RoverState(self.state.x, y, self.state.direction)
     pass
-@dataclass
+class TurnCommand(Command):
+    pass
+
+@dataclass(frozen=False)
 class RoverState:
     x: int
     y: int
