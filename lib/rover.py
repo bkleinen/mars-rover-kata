@@ -1,9 +1,14 @@
 class Rover:
     def __init__(self, x, y, direction):
-        pass
+        self.x = x
+        self.y = y
 
     def execute(self, command):
+        if "f" == command:
+            self.y += 1
+        else:
+            self.y -= 1
         pass
 
     def position(self):
-        return 0,1
+        return self.x, self.y
