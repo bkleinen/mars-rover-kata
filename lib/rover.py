@@ -50,13 +50,7 @@ class MoveCommand(Command):
         }
         delta = deltas[self.command][state.direction]
         return RoverState(state.x + delta[0], state.y + delta[1], state.direction)
-        if 'b' == self.command:
-            delta[0]
-        if "f" == self.command:
-            y = self.state.y + 1
-        elif "b" == self.command:
-            y = self.state.y - 1
-        return RoverState(self.state.x, y, self.state.direction)
+
     pass
 class TurnCommand(Command):
     def __init__(self, input, rover_state = None):
