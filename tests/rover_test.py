@@ -17,10 +17,12 @@ def test_rover_backward():
     rover.execute('b')
     assert rover.position() == (0,0)
 
-testcases = []
+testcases = [((0,0,"N"), "f", (0,1))]
 @pytest.mark.parametrize("init,command,expected", testcases)
-def test_rover(init, command, expected):
-    pass
+def test_rover_position(init, command, expected):
+    rover = Rover(*init)
+    rover.execute(command)
+    assert rover.position() == expected
 
 
     
