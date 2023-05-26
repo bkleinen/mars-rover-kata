@@ -69,8 +69,8 @@ class TurnCommand(Command):
             i = RoverState.directions.index(state.direction)
             i = (i - 1) % len(RoverState.directions)
             new_direction = RoverState.directions[i]
-        
-
+        return RoverState(state.x, state.y, direction= new_direction)
+    
 
 @dataclass(frozen=False)
 class RoverState:
