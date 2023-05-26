@@ -13,7 +13,7 @@ testcases = [
 
     (RS(2,2,"N"), "l", RS(2,2,"W")),
     (RS(3,3,"N"), "rr", RS(3,3,"S")),
-   # (RS(3,3,"N"), "ffr", RS(3,5,"E")),
+    (RS(3,3,"N"), "ffr", RS(3,5,"E")),
    # (RS(3,3,"N"), "ffrfflf", RS(5,6,"N")),
              ]
 @pytest.mark.parametrize("init,command,expected", testcases)
@@ -30,7 +30,7 @@ def test_command_for_str_b():
     c = Command.for_str('b')
     assert str(type(c)) == "<class 'lib.rover.MoveCommand'>"
 
-def test_command_for_str():
+def test_command_for_str_l():
     c = Command.for_str('l')
     assert str(type(c)) == "<class 'lib.rover.TurnCommand'>"
 
