@@ -40,21 +40,22 @@ class MoveCommand(Command):
 
     pass
 class TurnCommand(Command):
-    directions = ["N", "E", "S", "W"]
+    
     def __init__(self, input, rover_state = None):
         self.command = input
         self.state = rover_state
     
+    directions = ["N", "E", "S", "W"]
     def execute(self, state):
+        i = self.directions.index(state.direction)
+        d = 0
         if "r" == self.command:
-            i = self.directions.index(state.direction)
-            i = (i + 1) % len(self.directions)
-            new_direction = self.directions[i]
+            d = 1
         elif "l" == self.command: 
-            i = self.directions.index(state.direction)
-            i = (i - 1) % len(self.directions)
-            new_direction = self.directions[i]
-        return RoverState(state.x, state.y, direction= new_direction)
+            d = -1
+        new_index = (i + d) % len(self.directions)
+        new_direction = self.directions[new_index]
+        return RoverState(state.x, state.y, direction = new_direction)
     
 
 @dataclass(frozen=False)
