@@ -1,7 +1,8 @@
+from dataclasses import dataclass
 class Rover:
-    def __init__(self, x, y, direction):
-        self.x = x
-        self.y = y
+    def __init__(self, rover_state):
+        self.x = rover_state.x
+        self.y = rover_state.y
 
     def execute(self, command):
         if "f" == command:
@@ -11,4 +12,10 @@ class Rover:
         pass
 
     def position(self):
-        return self.x, self.y
+        return RoverState(self.x, self.y, "N")
+    
+@dataclass
+class RoverState:
+    x: int
+    y: int
+    direction: str
