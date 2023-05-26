@@ -6,8 +6,9 @@ class Rover:
         self.y = rover_state.y
 
     def execute(self, input):
-        commands = list(input)
-        for command in commands:
+        command_chars = list(input)
+        commands = [Command.for_str(c) for c in command_chars]
+        for command in command_chars:
             if "f" == command:
                 self.state = Command.for_str(command).execute(self.state)
             elif "b" == command:
