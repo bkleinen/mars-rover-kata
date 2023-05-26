@@ -24,7 +24,17 @@ class Rover:
 
     def position(self):
         return self.state
-    
+class Command:
+    @classmethod
+    def from_str(cls, input):
+        if input in ['l', 'r']:
+            return  TurnCommand(input)
+        pass
+    pass
+class TurnCommand(Command):
+    def __init__(self, input):
+        pass
+    pass
 @dataclass
 class RoverState:
     x: int
