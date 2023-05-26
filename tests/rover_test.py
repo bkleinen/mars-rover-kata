@@ -1,5 +1,5 @@
 import pytest
-from lib.rover import Rover
+from lib.rover import Rover, Command
 from lib.rover import RoverState as RS
 
 testcases = [
@@ -22,6 +22,8 @@ def test_rover_move(init, command, expected):
     rover.execute(command)
     assert rover.position() == expected
 
-
+def test_command_for_str():
+    c = Command.for_str('f')
+    assert str(type(c)) == "<class 'lib.rover.MoveCommand'>"
 
     

@@ -26,7 +26,7 @@ class Rover:
         return self.state
 class Command:
     @classmethod
-    def for_str(cls, input, rover_state):
+    def for_str(cls, input, rover_state = None):
         if input in ['f', 'b']:
             return  MoveCommand(input, rover_state)
         pass
