@@ -2,17 +2,15 @@ from dataclasses import dataclass
 class Rover:
     def __init__(self, rover_state):
         self.state = rover_state
-        self.x = rover_state.x
-        self.y = rover_state.y
 
     def execute(self, input):
-        command_chars = list(input)
-        commands = [Command.for_str(c) for c in command_chars]
+        commands = [Command.for_str(c) for c in list(input)]
         for command in commands: 
             self.state = command.execute(self.state)
           
     def position(self):
         return self.state
+    
 class Command:
     @classmethod
     def for_str(cls, input, rover_state = None):
@@ -42,19 +40,20 @@ class MoveCommand(Command):
 
     pass
 class TurnCommand(Command):
+    directions = ["N", "E", "S", "W"]
     def __init__(self, input, rover_state = None):
         self.command = input
         self.state = rover_state
     
     def execute(self, state):
         if "r" == self.command:
-            i = RoverState.directions.index(state.direction)
-            i = (i + 1) % len(RoverState.directions)
-            new_direction = RoverState.directions[i]
+            i = self.directions.index(state.direction)
+            i = (i + 1) % len(self.directions)
+            new_direction = self.directions[i]
         elif "l" == self.command: 
-            i = RoverState.directions.index(state.direction)
-            i = (i - 1) % len(RoverState.directions)
-            new_direction = RoverState.directions[i]
+            i = self.directions.index(state.direction)
+            i = (i - 1) % len(self.directions)
+            new_direction = self.directions[i]
         return RoverState(state.x, state.y, direction= new_direction)
     
 
@@ -63,4 +62,3 @@ class RoverState:
     x: int
     y: int
     direction: str
-    directions = ["N", "E", "S", "W"]
