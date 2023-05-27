@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from lib.rover_helper import string_to_matrix, matrix_to_string, create_field
 from lib.base import Position as P
 from lib.base import ObstacleEncountered
@@ -50,6 +50,7 @@ class World:
         if not self.is_free(new_pos.x, new_pos.y):
             obstacle = self.get(new_pos.x, new_pos.y)
             raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
-        return new_pos
+        return replace(rover_state, pos=new_pos)
+    
       
 

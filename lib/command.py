@@ -19,8 +19,7 @@ class MoveCommand(Command):
         self.state = rover_state
          
     def execute(self, state, world):
-        new_pos = world.next(state, self.command)
-        return dataclasses.replace(state, pos=new_pos)
+        return world.next(state, self.command)
         
 
 class TurnCommand(Command):
