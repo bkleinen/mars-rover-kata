@@ -115,6 +115,8 @@ class Position:
         return Position(x, y)
 
 P = Position
+
+
 @dataclass(frozen=False)
 class RoverState:
     pos: Position
