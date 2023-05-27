@@ -38,5 +38,12 @@ def test_rover_rolls_over_world_10x10():
     expected = RS(2,0,"N")
     assert rover.position() == expected
 
-  
+def test_rover_rolls_over_world_10x10():
+    init = RS(8,2,"N")
+    command = "rff"
+    rover = Rover(init)
+    rover.execute(command)
+    expected = RS(0,2,"E")
+    assert rover.position() == expected
+
 

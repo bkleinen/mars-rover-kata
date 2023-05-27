@@ -37,7 +37,8 @@ class MoveCommand(Command):
         }
         delta = deltas[self.command][state.direction]
         new_y = (state.y + delta[1]) % 10
-        return RoverState(state.x + delta[0], new_y, state.direction)
+        new_x = (state.x + delta[0]) % 10
+        return RoverState(new_x, new_y, state.direction)
 
     pass
 class TurnCommand(Command):
