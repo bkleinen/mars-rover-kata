@@ -59,9 +59,16 @@ class TurnCommand(Command):
         new_direction = self.directions[new_index]
         return RoverState(state.x, state.y, direction = new_direction)
     
+@dataclass(frozen=True)
+class World:
+    width: int
+    height: int
 
 @dataclass(frozen=False)
 class RoverState:
     x: int
     y: int
     direction: str
+    world: World = None
+
+

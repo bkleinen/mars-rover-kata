@@ -1,5 +1,5 @@
 import pytest
-from lib.rover import Rover, Command
+from lib.rover import Rover, World
 from lib.rover import RoverState as RS
 
 testcases = [
@@ -30,7 +30,7 @@ def test_rover_throws_exception_on_unknown_command():
     with pytest.raises(AttributeError):
         rover.execute(command)
 
-def test_rover_rolls_over_world_10x10():
+def test_rover_rolls_over_world_10x10_n():
     init = RS(2,8,"N")
     command = "ff"
     rover = Rover(init)
@@ -38,12 +38,30 @@ def test_rover_rolls_over_world_10x10():
     expected = RS(2,0,"N")
     assert rover.position() == expected
 
-def test_rover_rolls_over_world_10x10():
+def test_rover_rolls_over_world_10x10_e():
     init = RS(8,2,"N")
     command = "rff"
     rover = Rover(init)
     rover.execute(command)
     expected = RS(0,2,"E")
+    assert rover.position() == expected
+
+def test_rover_rolls_over_world_10x10_both():
+    init = RS(8,8,"N")
+    command = "ffrff"
+    rover = Rover(init)
+    rover.execute(command)
+    expected = RS(0,0,"E")
+    assert rover.position() == expected
+
+
+def test_rover_rolls_over_both_world_size():
+
+    init = RS(8,8,"N",World(10,20))
+    command = "ffrff"
+    rover = Rover(init)
+    rover.execute(command)
+    expected = RS(0,0,"E")
     assert rover.position() == expected
 
 
