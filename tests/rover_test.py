@@ -23,4 +23,20 @@ def test_rover_move(init, command, expected):
     rover.execute(command)
     assert rover.position() == expected
 
+def test_rover_throws_exception_on_unknown_command():
+    init = RS(3,3,"N")
+    command = "x"
+    rover = Rover(init)
+    with pytest.raises(AttributeError):
+        rover.execute(command)
+
+def test_rover_rolls_over_world_10x10():
+    init = RS(2,8,"N")
+    command = "ff"
+    rover = Rover(init)
+    rover.execute(command)
+    expected = RS(2,0,"N")
+    assert rover.position() == expected
+
+  
 
