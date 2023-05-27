@@ -72,16 +72,18 @@ class MoveCommand(Command):
     
     def execute(self, state, world):
         deltas = {
-            'f' :  {'N' : (0,1), 'S' : (0,-1), 'W' : (-1, 0), 'E': (1, 0)},
-            'b' :  {'N' : (0,-1), 'S' : (0,1), 'W' : (1, 0), 'E': (-1, 0)}
+            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
+            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
         }
         delta = deltas[self.command][state.direction]
-        new_y = (state.y + delta[1]) % world.height
-        new_x = (state.x + delta[0]) % world.width
+        new_pos = state.pos + delta
+        new_x = new_pos.x % world.width
+        new_y = new_pos.y % world.height
+        new_pos2 = P(new_x,new_y)
         if not world.is_free(new_x, new_y):
             raise ObstacleEncountered(f' obstacle at {new_x}, {new_y}: {world.get(new_x, new_y)}')
         
-        return dataclasses.replace(state, x=new_x, y=new_y)
+        return dataclasses.replace(state, pos=new_pos2)
         
 
 class TurnCommand(Command):
@@ -113,11 +115,11 @@ class Position:
         return Position(x, y)
 
 P = Position
-@dataclass(frozen=True)
+@dataclass(frozen=False)
 class RoverState:
-    x: int
-    y: int
+    pos: Position
     direction: str
+
 
 
 

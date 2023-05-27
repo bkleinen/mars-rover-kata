@@ -1,7 +1,9 @@
 import pytest
 from lib.rover import Rover, World, ObstacleEncountered
-from lib.rover import RoverState as RS
+from lib.rover import RoverState, Position
 
+def RS(x,y,d):
+    return RoverState(Position(x,y),d)
 testcases = [
     (RS(0,0,"N"), "f", RS(0,1,"N")),
     (RS(0,1,"N"), "b", RS(0,0,"N")),
