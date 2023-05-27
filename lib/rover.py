@@ -64,6 +64,14 @@ class World:
     width: int
     height: int
 
+    def __str__(self):
+        r = (("."*self.width)+'\n')*self.height
+        return '\n'+r
+    
+    def add_obstacle(self, x, y):
+        pass
+
+
 @dataclass(frozen=False)
 class RoverState:
     x: int
