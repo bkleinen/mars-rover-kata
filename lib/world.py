@@ -38,4 +38,7 @@ class World:
         new_x = pos.x % self.width
         new_y = pos.y % self.height
         return Position(new_x, new_y)
+    
+    def next(self, position, command):
+        pass
 
