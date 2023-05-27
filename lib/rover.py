@@ -92,20 +92,21 @@ class TurnCommand(Command):
     def __init__(self, input):
         self.command = input
     
-    directions = ["N", "E", "S", "W"]
     def execute(self, state, _world):
-        i = self.directions.index(state.direction)
-        d = 0
-        if "r" == self.command:
-            d = 1
-        elif "l" == self.command: 
-            d = -1
+        new_direction = self.get_new_direction(state.direction, self.command)
+        return dataclasses.replace(state, direction=new_direction)
+
+    directions = ["N", "E", "S", "W"]
+    turns = {'r' : 1, 'l': -1}
+    def get_new_direction(self, direction, command):
+        i = self.directions.index(direction)
+        d = self.turns[command]
         new_index = (i + d) % len(self.directions)
         new_direction = self.directions[new_index]
-        return dataclasses.replace(state, direction=new_direction)
+        return new_direction
   
 
-@dataclass(frozen=False)
+@dataclass(frozen=True)
 class RoverState:
     x: int
     y: int
