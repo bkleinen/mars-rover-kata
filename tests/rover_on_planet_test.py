@@ -21,17 +21,18 @@ testcases = [
              ]
 @pytest.mark.parametrize("init,command,expected", testcases)
 def test_rover_move(init, command, expected):
-    rover = Rover(init, Planet(10,10))
+    rover = Rover(init, Planet(12,12))
     rover.execute(command)
     assert rover.position() == expected
 
 testcases_planet = [
-    (RS(1,8,"N"), "f", RS(1,9,"N")),
-    (RS(1,9,"N"), "f", RS(9,8,"S")),
+    (RS(1,10,"N"), "f", RS(1,11,"N")),
+    (RS(1,11,"N"), "f", RS(11,10,"S")),
     (RS(1,1,"S"), "f", RS(1,0,"S")),
-    (RS(1,0,"S"), "f", RS(9,1,"N")),
-    (RS(2,0,"S"), "f", RS(8,1,"N")),
-    (RS(9,0,"S"), "f", RS(1,1,"N")),
+    (RS(1,0,"S"), "f", RS(11,1,"N")),
+    (RS(2,0,"S"), "f", RS(10,1,"N")),
+    (RS(11,0,"S"), "f", RS(1,1,"N")),
+    (RS(11,0,"S"), "rf", RS(1,1,"N")),
     pytest.param(
         RS(1,0,"S"), "f", RS(1,1,"N"),
         marks=pytest.mark.xfail), # passing over North Pole
@@ -40,7 +41,7 @@ testcases_planet = [
 
 @pytest.mark.parametrize("init,command,expected", testcases_planet)
 def test_rover_move_on_planet(init, command, expected):
-    rover = Rover(init, Planet(10,10))
+    rover = Rover(init, Planet(12,12))
     rover.execute(command)
     assert rover.position() == expected
 
