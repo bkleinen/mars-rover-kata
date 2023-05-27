@@ -1,4 +1,4 @@
-from lib.rover import Position as P
+from lib.base import Position as P
 
 def test_position_equals():
     p1 = P(4,3)

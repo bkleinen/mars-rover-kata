@@ -1,6 +1,6 @@
 import pytest
 from lib.rover import Rover, World
-from lib.rover import RoverState, Position
+from lib.base import RoverState, Position
 from lib.planet import Planet
 
 def RS(x,y,d):

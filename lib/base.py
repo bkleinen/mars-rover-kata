@@ -12,7 +12,6 @@ class Position:
 
 P = Position
 
-
 @dataclass(frozen=False)
 class RoverState:
     pos: Position

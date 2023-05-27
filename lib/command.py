@@ -1,7 +1,8 @@
-from lib.base import Position, ObstacleEncountered
 import dataclasses
+from lib.base import Position, ObstacleEncountered
 
 P = Position
+
 class Command:
     @classmethod
     def for_str(cls, input, rover_state = None):
