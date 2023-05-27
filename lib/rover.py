@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import dataclasses
+from lib.rover_helper import string_to_matrix, matrix_to_string
 
 
 @dataclass(frozen=False)
@@ -13,9 +14,7 @@ class World:
  
     @classmethod
     def from_str(cls, world_rep):
-        rows = world_rep.strip().split('\n')
-        field = [list(row) for row in rows]
-        field.reverse()
+        field = string_to_matrix(world_rep)
         height = (len(field))
         width = len(field[0])
         return World(width, height, field)
