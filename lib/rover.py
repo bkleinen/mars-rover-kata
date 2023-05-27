@@ -36,9 +36,9 @@ class MoveCommand(Command):
             'b' :  {'N' : (0,-1), 'S' : (0,1), 'W' : (1, 0), 'E': (-1, 0)}
         }
         delta = deltas[self.command][state.direction]
-        new_y = (state.y + delta[1]) % 10
-        new_x = (state.x + delta[0]) % 10
-        return RoverState(new_x, new_y, state.direction)
+        new_y = (state.y + delta[1]) % state.world.height
+        new_x = (state.x + delta[0]) % state.world.width
+        return RoverState(new_x, new_y, state.direction, state.world)
 
     pass
 class TurnCommand(Command):
@@ -57,7 +57,7 @@ class TurnCommand(Command):
             d = -1
         new_index = (i + d) % len(self.directions)
         new_direction = self.directions[new_index]
-        return RoverState(state.x, state.y, direction = new_direction)
+        return RoverState(state.x, state.y, direction = new_direction, world = state.world)
     
 @dataclass(frozen=True)
 class World:
@@ -69,6 +69,6 @@ class RoverState:
     x: int
     y: int
     direction: str
-    world: World = None
+    world: World = World(10,10)
 
 

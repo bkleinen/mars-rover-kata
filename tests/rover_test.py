@@ -56,12 +56,12 @@ def test_rover_rolls_over_world_10x10_both():
 
 
 def test_rover_rolls_over_both_world_size():
-
-    init = RS(8,8,"N",World(10,20))
+    world = World(5,7)
+    init = RS(4,5,"N",world)
     command = "ffrff"
     rover = Rover(init)
     rover.execute(command)
-    expected = RS(0,0,"E")
+    expected = RS(1,0,"E", world)
     assert rover.position() == expected
 
 
