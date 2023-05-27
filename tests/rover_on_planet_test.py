@@ -1,6 +1,7 @@
 import pytest
 from lib.rover import Rover, World, ObstacleEncountered
 from lib.rover import RoverState, Position
+from lib.planet import Planet
 
 def RS(x,y,d):
     return RoverState(Position(x,y),d)
@@ -20,7 +21,7 @@ testcases = [
              ]
 @pytest.mark.parametrize("init,command,expected", testcases)
 def test_rover_move(init, command, expected):
-    rover = Rover(init)
+    rover = Rover(init, Planet(10,10))
     rover.execute(command)
     assert rover.position() == expected
 
@@ -34,7 +35,7 @@ testcases_planet = [
 
 @pytest.mark.parametrize("init,command,expected", testcases_planet)
 def test_rover_move_on_planet(init, command, expected):
-    rover = Rover(init)
+    rover = Rover(init, Planet(10,10))
     rover.execute(command)
     assert rover.position() == expected
 
