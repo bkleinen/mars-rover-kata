@@ -71,9 +71,6 @@ class MoveCommand(Command):
         
     
     def execute(self, state, world):
-        if state is not None:
-            self.state = state
-        state = self.state
         deltas = {
             'f' :  {'N' : (0,1), 'S' : (0,-1), 'W' : (-1, 0), 'E': (1, 0)},
             'b' :  {'N' : (0,-1), 'S' : (0,1), 'W' : (1, 0), 'E': (-1, 0)}
