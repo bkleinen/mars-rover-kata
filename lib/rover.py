@@ -8,8 +8,17 @@ class World:
     height: int
     field: list = None
     def __post_init__(self):
-        self.field = [['.' for i in list(range(0,self.width))] for j in  list(range(0,self.height))]
+        if self.field is None:
+            self.field = [['.' for i in list(range(0,self.width))] for j in  list(range(0,self.height))]
  
+    @classmethod
+    def from_str(cls, world_rep):
+        rows = world_rep.strip().split('\n')
+        field = [list(row) for row in rows]
+        field.reverse()
+        height = (len(field))
+        width = len(field[0])
+        return World(width, height, field)
 
     def __str__(self):
         rows = [ ''.join(r) for r in self.field ]
