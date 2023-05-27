@@ -18,7 +18,7 @@ class World:
         return world_str
     
     def add_obstacle(self, x, y):
-        self.field[x][y] = 'o'        
+        self.field[y][x] = 'o'        
 
 
 class Rover:
