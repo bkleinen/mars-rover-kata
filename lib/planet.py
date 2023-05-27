@@ -9,8 +9,14 @@ class Planet(World):
             new_x = self.width - rover_state.pos.x
             new_y = self.height-2
             return replace(rover_state, pos=P(new_x, new_y), direction="S")
-    
+        elif self.on_south_pole(rover_state):
+            new_x = self.width - rover_state.pos.x
+            new_y = 1
+            return replace(rover_state, pos=P(new_x, new_y), direction="N")
         return super().next(rover_state, command)
     
     def on_north_pole(self, rover_state):
         return rover_state.pos.y == self.height-1
+
+    def on_south_pole(self, rover_state):
+        return rover_state.pos.y == 0
