@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 import dataclasses
 class Rover:
-    def __init__(self, rover_state):
+    def __init__(self, rover_state, world = None):
         self.state = rover_state
+        self.world = world
 
     def execute(self, input):
         commands = [Command.for_str(c) for c in list(input)]
@@ -21,14 +22,13 @@ class Command:
             return  TurnCommand(input)
         raise AttributeError(f"no command for:{input}, {type(input)} {list(input)}")
         
-    pass
 class MoveCommand(Command):
     def __init__(self, input, rover_state = None):
         self.command = input
         self.state = rover_state
         
     
-    def execute(self, state = None):
+    def execute(self, state = None, world = None):
         if state is not None:
             self.state = state
         state = self.state
@@ -48,7 +48,7 @@ class TurnCommand(Command):
         self.state = rover_state
     
     directions = ["N", "E", "S", "W"]
-    def execute(self, state):
+    def execute(self, state, world = None):
         i = self.directions.index(state.direction)
         d = 0
         if "r" == self.command:
@@ -63,6 +63,10 @@ class TurnCommand(Command):
 class World:
     width: int
     height: int
+    field: list = None
+ # self.field =  [['.' for i in list(range(0,10))] for j in  list(range(0,10))]
+  #   def __post_init__(self):
+  #       self.field = ['.' for i in range(0, self.width)]
 
     def __str__(self):
         r = (("."*self.width)+'\n')*self.height
