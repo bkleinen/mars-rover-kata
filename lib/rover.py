@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import dataclasses
 class Rover:
     def __init__(self, rover_state):
         self.state = rover_state
@@ -38,9 +39,8 @@ class MoveCommand(Command):
         delta = deltas[self.command][state.direction]
         new_y = (state.y + delta[1]) % state.world.height
         new_x = (state.x + delta[0]) % state.world.width
-        return RoverState(new_x, new_y, state.direction, state.world)
+        return dataclasses.replace(state, x=new_x, y=new_y)
 
-    pass
 class TurnCommand(Command):
     
     def __init__(self, input, rover_state = None):
@@ -57,8 +57,8 @@ class TurnCommand(Command):
             d = -1
         new_index = (i + d) % len(self.directions)
         new_direction = self.directions[new_index]
-        return RoverState(state.x, state.y, direction = new_direction, world = state.world)
-    
+        return dataclasses.replace(state, direction=new_direction)
+  
 @dataclass(frozen=True)
 class World:
     width: int
@@ -70,5 +70,6 @@ class RoverState:
     y: int
     direction: str
     world: World = World(10,10)
+
 
 
