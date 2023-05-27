@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from lib.rover_helper import string_to_matrix, matrix_to_string, create_field
-from lib.base import Position
+from lib.base import Position as P
+from lib.base import ObstacleEncountered
 
 @dataclass(frozen=False)
 class World:
@@ -37,8 +38,17 @@ class World:
     def wrap(self, pos):
         new_x = pos.x % self.width
         new_y = pos.y % self.height
-        return Position(new_x, new_y)
+        return P(new_x, new_y)
     
-    def next(self, position, command):
-        pass
+    def next(self, rover_state, command):
+        deltas = {
+            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
+            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
+        }
+        delta = deltas[command][rover_state.direction]
+        new_pos = self.wrap(rover_state.pos + delta)
+        if not self.is_free(new_pos.x, new_pos.y):
+            obstacle = self.get(new_pos.x, new_pos.y)
+            raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
+      
 

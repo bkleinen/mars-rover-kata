@@ -19,7 +19,7 @@ class MoveCommand(Command):
         self.state = rover_state
          
     def execute(self, state, world):
-        new_pos = world.next(state.pos, self.command)
+        new_pos = world.next(state, self.command)
         deltas = {
             'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
             'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
