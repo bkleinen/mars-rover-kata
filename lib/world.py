@@ -50,5 +50,6 @@ class World:
         if not self.is_free(new_pos.x, new_pos.y):
             obstacle = self.get(new_pos.x, new_pos.y)
             raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
+        return new_pos
       
 

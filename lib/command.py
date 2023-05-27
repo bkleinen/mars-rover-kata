@@ -20,15 +20,6 @@ class MoveCommand(Command):
          
     def execute(self, state, world):
         new_pos = world.next(state, self.command)
-        deltas = {
-            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
-            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
-        }
-        delta = deltas[self.command][state.direction]
-        new_pos = world.wrap(state.pos + delta)
-        if not world.is_free(new_pos.x, new_pos.y):
-            raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {world.get(new_pos.x, new_pos.y)}')
-        
         return dataclasses.replace(state, pos=new_pos)
         
 
