@@ -1,5 +1,5 @@
 import pytest
-from lib.rover import Rover, World, ObstacleEncountered
+from lib.rover import Rover, World
 from lib.rover import RoverState, Position
 from lib.planet import Planet
 
