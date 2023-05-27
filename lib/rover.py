@@ -1,14 +1,33 @@
 from dataclasses import dataclass
 import dataclasses
+
+
+@dataclass(frozen=True)
+class World:
+    width: int
+    height: int
+    field: list = None
+ # self.field =  [['.' for i in list(range(0,10))] for j in  list(range(0,10))]
+  #   def __post_init__(self):
+  #       self.field = ['.' for i in range(0, self.width)]
+
+    def __str__(self):
+        r = (("."*self.width)+'\n')*self.height
+        return '\n'+r
+    
+    def add_obstacle(self, x, y):
+        pass
+
+
 class Rover:
-    def __init__(self, rover_state, world = None):
+    def __init__(self, rover_state, world = World(10,10)):
         self.state = rover_state
         self.world = world
 
     def execute(self, input):
         commands = [Command.for_str(c) for c in list(input)]
         for command in commands: 
-            self.state = command.execute(self.state)
+            self.state = command.execute(self.state, self.world)
           
     def position(self):
         return self.state
@@ -37,8 +56,8 @@ class MoveCommand(Command):
             'b' :  {'N' : (0,-1), 'S' : (0,1), 'W' : (1, 0), 'E': (-1, 0)}
         }
         delta = deltas[self.command][state.direction]
-        new_y = (state.y + delta[1]) % state.world.height
-        new_x = (state.x + delta[0]) % state.world.width
+        new_y = (state.y + delta[1]) % world.height
+        new_x = (state.x + delta[0]) % world.width
         return dataclasses.replace(state, x=new_x, y=new_y)
 
 class TurnCommand(Command):
@@ -59,22 +78,6 @@ class TurnCommand(Command):
         new_direction = self.directions[new_index]
         return dataclasses.replace(state, direction=new_direction)
   
-@dataclass(frozen=True)
-class World:
-    width: int
-    height: int
-    field: list = None
- # self.field =  [['.' for i in list(range(0,10))] for j in  list(range(0,10))]
-  #   def __post_init__(self):
-  #       self.field = ['.' for i in range(0, self.width)]
-
-    def __str__(self):
-        r = (("."*self.width)+'\n')*self.height
-        return '\n'+r
-    
-    def add_obstacle(self, x, y):
-        pass
-
 
 @dataclass(frozen=False)
 class RoverState:
