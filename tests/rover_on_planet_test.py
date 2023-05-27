@@ -27,6 +27,7 @@ def test_rover_move(init, command, expected):
 
 testcases_planet = [
     (RS(1,8,"N"), "f", RS(1,9,"N")),
+    #(RS(1,9,"N"), "f", RS(9,8,"S")),
     pytest.param(
         RS(1,9,"N"), "f", RS(9,8,"S"),
         marks=pytest.mark.xfail), # passing over North Pole
