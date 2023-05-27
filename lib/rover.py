@@ -2,21 +2,23 @@ from dataclasses import dataclass
 import dataclasses
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=False)
 class World:
     width: int
     height: int
     field: list = None
- # self.field =  [['.' for i in list(range(0,10))] for j in  list(range(0,10))]
-  #   def __post_init__(self):
-  #       self.field = ['.' for i in range(0, self.width)]
+    def __post_init__(self):
+        self.field = [['.' for i in list(range(0,self.width))] for j in  list(range(0,self.height))]
+ 
 
     def __str__(self):
-        r = (("."*self.width)+'\n')*self.height
-        return '\n'+r
+        rows = [ ''.join(r) for r in self.field ]
+        rows.reverse()
+        world_str = '\n' + '\n'.join(rows) + '\n'
+        return world_str
     
     def add_obstacle(self, x, y):
-        pass
+        self.field[x][y] = 'o'        
 
 
 class Rover:
@@ -47,7 +49,7 @@ class MoveCommand(Command):
         self.state = rover_state
         
     
-    def execute(self, state = None, world = None):
+    def execute(self, state, world):
         if state is not None:
             self.state = state
         state = self.state
@@ -62,12 +64,11 @@ class MoveCommand(Command):
 
 class TurnCommand(Command):
     
-    def __init__(self, input, rover_state = None):
+    def __init__(self, input):
         self.command = input
-        self.state = rover_state
     
     directions = ["N", "E", "S", "W"]
-    def execute(self, state, world = None):
+    def execute(self, state, _world):
         i = self.directions.index(state.direction)
         d = 0
         if "r" == self.command:
@@ -84,7 +85,6 @@ class RoverState:
     x: int
     y: int
     direction: str
-    world: World = World(10,10)
 
 
 

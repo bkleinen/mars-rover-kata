@@ -54,14 +54,14 @@ def test_rover_rolls_over_world_10x10_both():
     expected = RS(0,0,"E")
     assert rover.position() == expected
 
-@pytest.mark.xfail
+
 def test_rover_rolls_over_both_world_size():
     world = World(5,7)
     init = RS(4,5,"N")
     command = "ffrff"
-    rover = Rover(init)
+    rover = Rover(init, world)
     rover.execute(command)
-    expected = RS(1,0,"E", world)
+    expected = RS(1,0,"E")
     assert rover.position() == expected
 
 def test_world_to_str_1():
@@ -98,10 +98,9 @@ def test_world_to_str_5():
 """
     assert str(world) == world_rep
 
-@pytest.mark.xfail
 def test_world_to_str_5_obstacle():
-    world = World(10, 5,[(0,0)])
-   
+    world = World(10, 5)
+    world.add_obstacle(0,0)
     world_rep = """
 ..........
 ..........
