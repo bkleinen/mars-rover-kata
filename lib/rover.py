@@ -102,7 +102,17 @@ class TurnCommand(Command):
         new_direction = self.directions[new_index]
         return new_direction
   
+@dataclass(frozen=True)
+class Position:
+    x: int
+    y: int
+        
+    def __add__(self, other):
+        x = self.x + other.x
+        y = self.y + other.y
+        return Position(x, y)
 
+P = Position
 @dataclass(frozen=True)
 class RoverState:
     x: int
