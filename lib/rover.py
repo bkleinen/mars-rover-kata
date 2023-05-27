@@ -27,7 +27,19 @@ class World:
         return world_str
     
     def add_obstacle(self, x, y):
-        self.field[y][x] = 'o'        
+        self.set(x,y,'o')       
+
+    def is_free(self, x, y):
+        return self.get(x, y) == '.' 
+    
+    def get(self, x, y):
+        return self.field[y][x]
+    
+    def set(self, x, y, value):
+        self.field[y][x] = value
+
+class ObstacleEncountered(Exception):
+    pass
 
 
 class Rover:
@@ -69,7 +81,11 @@ class MoveCommand(Command):
         delta = deltas[self.command][state.direction]
         new_y = (state.y + delta[1]) % world.height
         new_x = (state.x + delta[0]) % world.width
+        if not world.is_free(new_x, new_y):
+            raise ObstacleEncountered(f' obstacle at {new_x}, {new_y}: {world.get(new_x, new_y)}')
+        
         return dataclasses.replace(state, x=new_x, y=new_y)
+        
 
 class TurnCommand(Command):
     

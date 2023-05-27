@@ -1,5 +1,5 @@
 import pytest
-from lib.rover import Rover, World
+from lib.rover import Rover, World, ObstacleEncountered
 from lib.rover import RoverState as RS
 
 testcases = [
@@ -156,3 +156,50 @@ o.........
 """
     world = World.from_str(world_rep)
     assert str(world) == world_rep
+
+def test_rover_obstacles_1():
+    world_rep = """
+....o.....
+.o........
+..........
+..........
+....o.....
+"""
+    world = World.from_str(world_rep)
+    assert str(world) == world_rep
+    rover = Rover(RS(2,0,'N'), world)
+    with pytest.raises(ObstacleEncountered):
+        rover.execute('rffffff')
+    assert RS(3,0,'E') == rover.position()
+
+
+def test_rover_obstacles_2():
+    world_rep = """
+....o.....
+.o........
+..........
+..........
+....o.....
+"""
+    world = World.from_str(world_rep)
+    assert str(world) == world_rep
+    rover = Rover(RS(1,0,'N'), world)
+    with pytest.raises(ObstacleEncountered):
+        rover.execute('ffff')
+    assert RS(1,2,'N') == rover.position()
+
+
+def test_rover_obstacles_more():
+    world_rep = """
+....o.....
+.o........
+..........
+..........
+....o.....
+"""
+    world = World.from_str(world_rep)
+    assert str(world) == world_rep
+    rover = Rover(RS(1,0,'N'), world)
+    with pytest.raises(ObstacleEncountered):
+        rover.execute('ffffrffff')
+    assert RS(1,2,'N') == rover.position()
