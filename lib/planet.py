@@ -23,7 +23,8 @@ class Planet(World):
             new_y = self.height-2
             new_direction = 'S'
         else:
-            new_x = self.opposite_longitude(rover_state.pos.x)
+            turns_sp = {'E': 1, 'N' : 4, 'W': 3, 'S': 2}
+            new_x = self.turn(rover_state.pos.x,turns_sp[rover_state.direction])
             new_y = 1
             new_direction = 'N'
          

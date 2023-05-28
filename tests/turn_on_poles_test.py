@@ -27,7 +27,10 @@ testcases_planet = [(RS(0,2,"N"), "ff", RS(2,2,"S")),
                     (RS(1,2,"S"), "f",  RS(1,1,"S")),
                     (RS(1,3,"S"), "ff", RS(1,1,"S")), # this is on north pole and fails
                     (RS(0,0,"S"), "f",  RS(2,1,"N")),
-               #     (RS(1,2,"S"), "frf", RS(0,2,"N")),
+                    (RS(1,2,"N"), "frf", RS(0,2,"S")),
+                    (RS(1,1,"S"), "frf", RS(2,1,"N")),
+                    (RS(1,1,"S"), "flffflff", RS(1,1,"S")),
+                    (RS(2,1,"N"), "ffrff", RS(3,1,"S")),
 ]
       
 @pytest.mark.parametrize("init,command,expected", testcases_planet)
