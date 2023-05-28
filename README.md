@@ -30,6 +30,6 @@ von unten (S):
   0
 3   1
   2
-S
+
 l: E 1 turns , x + 1
 r: W 3 turns , x - 1

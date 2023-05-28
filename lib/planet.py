@@ -16,15 +16,14 @@ class Planet(World):
         return self.next_on_pole(rover_state)
 
     def next_on_pole(self, rover_state): 
-
         if self.on_north_pole(rover_state):
             turns = {'E': 1, 'N' : 2, 'W': 3, 'S': 4}
             new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])
             new_y = self.height-2
             new_direction = 'S'
         else:
-            turns_sp = {'E': 1, 'N' : 4, 'W': 3, 'S': 2}
-            new_x = self.turn(rover_state.pos.x,turns_sp[rover_state.direction])
+            turns = {'E': 1, 'N' : 4, 'W': 3, 'S': 2}
+            new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])
             new_y = 1
             new_direction = 'N'
          
