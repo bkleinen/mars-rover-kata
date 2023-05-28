@@ -17,5 +17,8 @@ class RoverState:
     pos: Position
     direction: str
 
+def RS(x,y,d):
+    return RoverState(Position(x,y),d)
+
 class ObstacleEncountered(Exception):
     pass

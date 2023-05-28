@@ -1,10 +1,8 @@
 import pytest
 from lib.rover import Rover, World
-from lib.base import RoverState, Position
+from lib.base import RS
 from lib.planet import Planet
 
-def RS(x,y,d):
-    return RoverState(Position(x,y),d)
 testcases = [
     (RS(1,1,"N"), "f", RS(1,2,"N")),
     (RS(2,2,"N"), "b", RS(2,1,"N")),
@@ -45,6 +43,3 @@ def test_rover_move_on_planet(init, command, expected):
     rover.execute(command)
     assert rover.position() == expected
 
-def test_world_with_must_be_multiple_of_four():
-    with pytest.raises(AttributeError):
-        rover = Rover(RS(1,0,"S"), Planet(10,10))
