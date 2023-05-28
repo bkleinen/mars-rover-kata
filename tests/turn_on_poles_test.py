@@ -19,11 +19,15 @@ testcases_planet = [(RS(0,2,"N"), "ff", RS(2,2,"S")),
                     (RS(1,3,"N"), "llf", RS(1,2,"S")),
 
                     (RS(1,3,"N"), "rrf",  RS(1,2,"S")),
-                    (RS(1,3,"N"), "rrff",  RS(1,1,"S")),                           
-                    (RS(1,3,"S"), "f",  RS(1,2,"S")),
+                    (RS(1,3,"N"), "rrff",  RS(1,1,"S")),
+
+                    (RS(0,3,"N"), "f", RS(2,2,"S")),
+                    (RS(0,3,"S"), "f",  RS(0,2,"S")), # on pole, with direction S -> two turns were there!
+
                     (RS(1,2,"S"), "f",  RS(1,1,"S")),
                     (RS(1,3,"S"), "ff", RS(1,1,"S")), # this is on north pole and fails
-                  
+                    (RS(0,0,"S"), "f",  RS(2,1,"N")),
+               #     (RS(1,2,"S"), "frf", RS(0,2,"N")),
 ]
       
 @pytest.mark.parametrize("init,command,expected", testcases_planet)
