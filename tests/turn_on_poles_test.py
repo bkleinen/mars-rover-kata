@@ -18,8 +18,10 @@ testcases_planet = [(RS(0,2,"N"), "ff", RS(2,2,"S")),
                     (RS(0,3,"N"), "lf", RS(3,2,"S")),
                     (RS(1,3,"N"), "llf", RS(1,2,"S")),
 
-                    (RS(1,3,"N"), "rrf",  RS(1,2,"S")),                           
+                    (RS(1,3,"N"), "rrf",  RS(1,2,"S")),
+                    (RS(1,3,"N"), "rrff",  RS(1,1,"S")),                           
                     (RS(1,3,"S"), "f",  RS(1,2,"S")),
+                    (RS(1,2,"S"), "f",  RS(1,1,"S")),
                     (RS(1,3,"S"), "ff", RS(1,1,"S")), # this is on north pole and fails
                   
 ]

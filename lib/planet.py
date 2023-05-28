@@ -44,4 +44,4 @@ class Planet(World):
     
     def turn(self, x, quarters = 1):
         quarter = self.width/4
-        return (x + quarters * quarter) % self.width
+        return int((x + quarters * quarter) % self.width)
