@@ -32,10 +32,10 @@ testcases_planet = [
     (RS(1,0,"S"), "f", RS(11,1,"N")),
     (RS(2,0,"S"), "f", RS(10,1,"N")),
     (RS(11,0,"S"), "f", RS(1,1,"N")),
-    #(RS(11,0,"S"), "rf", RS(1,1,"E")),
-    pytest.param(
-        RS(1,0,"S"), "f", RS(11,1,"N"),
-        marks=pytest.mark.xfail), # passing over North Pole
+    (RS(11,0,"S"), "rf", RS(1,1,"N")),
+   # pytest.param(
+   #     RS(1,0,"S"), "f", RS(11,1,"N"),
+   #     marks=pytest.mark.xfail), # passing over North Pole
 
              ]
 
