@@ -11,6 +11,8 @@ class Planet(World):
 
     def next(self, rover_state, command):
         new_x = self.opposite_longitude(rover_state.pos.x)
+      #  if self.not_on_pole(rover_state):
+      #      return super().next(rover_state, command)
         if self.on_north_pole(rover_state):
             new_y = self.height-2
             new_direction = 'S'
@@ -21,6 +23,8 @@ class Planet(World):
             return replace(rover_state, pos=P(new_x, new_y), direction="N")
         return super().next(rover_state, command)
     
+    def not_on_pole(self, rover_state):
+        return not (self.on_north_pole(rover_state) or self.on_north_pole(rover_state))
     def on_north_pole(self, rover_state):
         return rover_state.pos.y == self.height-1
 
