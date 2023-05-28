@@ -15,7 +15,7 @@ class Planet(World):
    #     return self.next_on_pole(rover_state)
 
     def next_state(self, rover_state, command): 
-        if self.not_on_pole(rover_state.pos):
+        if not self.on_pole(rover_state.pos):
             return super().next_state(rover_state, command)
         
         return self.next_on_pole(rover_state)
@@ -33,8 +33,8 @@ class Planet(World):
         new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])   
         return replace(rover_state, pos=P(new_x, new_y), direction=new_direction)
 
-    def not_on_pole(self, pos):
-        return not self.on_north_pole(pos) and not self.on_south_pole(pos)
+    def on_pole(self, pos):
+        return self.on_north_pole(pos) or self.on_south_pole(pos)
     
     def on_north_pole(self, pos):
         return pos.y == self.height-1
@@ -47,8 +47,9 @@ class Planet(World):
         return int((x + quarters * quarter) % self.width)
     
     def add_obstacle(self, x, y):
-        if self.not_on_pole(P(x,y)):
-            super().add_obstacle(x,y) 
-    
+        if not self.on_pole(P(x,y)):
+            super().add_obstacle(x,y)
+            return
+         
         for x in range(self.width):
             super().add_obstacle(x,y)

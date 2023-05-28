@@ -1,7 +1,7 @@
 import pytest
 from lib.rover import Rover
 from lib.planet import Planet
-from lib.base import RS, ObstacleEncountered
+from lib.base import RS, ObstacleEncountered, Position as P
 
 
 planet_string = """
@@ -67,15 +67,16 @@ def test_rover_turn_on_pole_4_4_obstacles_invalid(init, command, expected):
 # obstacle is set to the pole:
 planet_string = """
 oooo
-....
-....
+..o.
+.o..
 oooo
 """
-
 
 def test_obstacle_covers_pole():
     planet = Planet(4,4)
     planet.add_obstacle(0,0)
+    planet.add_obstacle(1,1)
+    planet.add_obstacle(2,2)
     planet.add_obstacle(3,3)
     assert str(planet) == planet_string
 
