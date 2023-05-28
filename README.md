@@ -8,3 +8,6 @@ on the poles; it serves as a history for where the
 rover came from.
 Without a turn, it moves along the same line - that is
 the opposite
+
+
+new_tests = [pytest.param(*t,marks=pytest.mark.xfail) for t in new_tests]

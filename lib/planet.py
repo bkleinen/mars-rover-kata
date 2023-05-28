@@ -25,6 +25,8 @@ class Planet(World):
                 new_x = self.turn(rover_state.pos.x,1)
             elif rover_state.direction == 'W':
                 new_x = self.turn(rover_state.pos.x,3)
+            elif rover_state.direction == 'S':
+                new_x = self.turn(rover_state.pos.x,4)
             new_y = self.height-2
             new_direction = 'S'
         else:
