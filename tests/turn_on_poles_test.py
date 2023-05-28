@@ -31,21 +31,10 @@ testcases_planet_8 = [
     (RS(0,7,"N"), "f", RS(4,6,"S")),
     (RS(0,6,"N"), "ff", RS(4,6,"S")),
     (RS(0,7,"N"), "rf", RS(2,6,"S")),
-   # (RS(0,7,"N"), "rrf", RS(0,6,"S")),
+    (RS(0,7,"N"), "rrf", RS(0,6,"S")),
     (RS(0,7,"N"), "lf", RS(6,6,"S")),
-   # (RS(0,6,"N"), "frrf", RS(0,6,"S"))
-            
-             ]
-new_tests_8 = [
-               ]
-
-new_tests_8 = [pytest.param(*t,marks=pytest.mark.xfail) for t in new_tests_8]
-
-testcases_planet_8.extend(new_tests_8)       
- # pytest.param(
-   #     RS(1,0,"S"), "f", RS(11,1,"N"),
-   #     marks=pytest.mark.xfail), # passing over North Pole
-
+    (RS(0,6,"N"), "frrf", RS(0,6,"S"))
+]
 @pytest.mark.parametrize("init,command,expected", testcases_planet_8)
 def test_rover_turn_on_pole_8_8(init, command, expected):
     rover = Rover(init, Planet(8,8))
