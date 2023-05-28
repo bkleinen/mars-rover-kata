@@ -41,16 +41,23 @@ class World:
         return P(new_x, new_y)
     
     def next(self, rover_state, command):
+        new_pos = self.next_position(rover_state, command)
+        self.ensure_free(new_pos)
+        return replace(rover_state, pos=new_pos)
+
+    def ensure_free(self, new_pos):
+        if not self.is_free(new_pos.x, new_pos.y):
+            obstacle = self.get(new_pos.x, new_pos.y)
+            raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
+
+    def next_position(self, rover_state, command):
         deltas = {
             'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
             'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
         }
         delta = deltas[command][rover_state.direction]
         new_pos = self.wrap(rover_state.pos + delta)
-        if not self.is_free(new_pos.x, new_pos.y):
-            obstacle = self.get(new_pos.x, new_pos.y)
-            raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
-        return replace(rover_state, pos=new_pos)
+        return new_pos
     
       
 

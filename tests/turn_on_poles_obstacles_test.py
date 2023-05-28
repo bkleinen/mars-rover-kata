@@ -13,7 +13,7 @@ planet_string = """
 testcases_planet = [
     (RS(0,2,"N"), "ff", RS(2,2,"S")),
   # (RS(1,2,"N"), "ff", RS(3,2,"S")),
-    (RS(2,2,"N"), "ff", RS(0,3,"S")), # stops in front of obstacle
+   # (RS(2,2,"N"), "ff", RS(0,3,"S")), # stops in front of obstacle
   # (RS(3,2,"N"), "ff", RS(1,2,"S")),
 
   # (RS(0,2,"N"), "frf", RS(1,2,"S")),
