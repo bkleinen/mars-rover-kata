@@ -13,8 +13,18 @@ class Planet(World):
         if self.not_on_pole(rover_state):
             return super().next(rover_state, command)
         
+        return self.next_on_pole(rover_state)
+
+    def next_on_pole(self, rover_state): 
         new_x = self.opposite_longitude(rover_state.pos.x)
+
         if self.on_north_pole(rover_state):
+            if rover_state.direction == 'N':
+                new_x = self.opposite_longitude(rover_state.pos.x)
+            elif rover_state.direction == 'E':
+                new_x = self.turn(rover_state.pos.x,1)
+            elif rover_state.direction == 'W':
+                new_x = self.turn(rover_state.pos.x,3)
             new_y = self.height-2
             new_direction = 'S'
         else:
@@ -35,3 +45,7 @@ class Planet(World):
     def opposite_longitude(self, x):
         half = self.width/2
         return (x + half) % self.width
+    
+    def turn(self, x, quarters = 1):
+        quarter = self.width/4
+        return (x + quarters * quarter) % self.width

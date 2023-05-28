@@ -13,7 +13,9 @@ def test_turn_on_north_pole():
     pass
 
 testcases_planet = [(RS(0,2,"N"), "ff", RS(2,2,"S")),
-                    (RS(0,3,"N"), "f", RS(2,2,"S"))
+                    (RS(0,3,"N"), "f", RS(2,2,"S")),
+                    (RS(0,3,"N"), "rf", RS(1,2,"S")),
+                    (RS(0,3,"N"), "lf", RS(3,2,"S"))
              ]
 
 new_tests = [(RS(0,3,"N"), "rf", RS(1,2,"S"))]
