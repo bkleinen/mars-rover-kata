@@ -71,7 +71,8 @@ oooo
 ....
 oooo
 """
-@pytest.mark.xfail
+
+
 def test_obstacle_covers_pole():
     planet = Planet(4,4)
     planet.add_obstacle(0,0)

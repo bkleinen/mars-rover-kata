@@ -47,4 +47,8 @@ class Planet(World):
         return int((x + quarters * quarter) % self.width)
     
     def add_obstacle(self, x, y):
-        self.set(x,y,'o')   
+        if self.not_on_pole(P(x,y)):
+            super().add_obstacle(x,y) 
+    
+        for x in range(self.width):
+            super().add_obstacle(x,y)
