@@ -17,7 +17,7 @@ class World:
         field = string_to_matrix(world_rep)
         height = (len(field))
         width = len(field[0])
-        return World(width, height, field)
+        return cls(width, height, field)
 
     def __str__(self):
         world_str = matrix_to_string(self.field)
