@@ -10,15 +10,14 @@ class Planet(World):
         super().__post_init__()
 
     def next(self, rover_state, command):
+        new_x = self.opposite_longitude(rover_state.pos.x)
         if self.on_north_pole(rover_state):
-            new_x = self.opposite_longitude(rover_state.pos.x)
             new_y = self.height-2
+            new_direction = 'S'
             return replace(rover_state, pos=P(new_x, new_y), direction="S")
         elif self.on_south_pole(rover_state):
-            if rover_state.direction == 'E':
-                new_x = self.width - rover_state.pos.x
-            new_x = self.opposite_longitude(rover_state.pos.x)
             new_y = 1
+            new_direction = 'N'
             return replace(rover_state, pos=P(new_x, new_y), direction="N")
         return super().next(rover_state, command)
     
