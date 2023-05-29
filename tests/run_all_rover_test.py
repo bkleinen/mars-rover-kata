@@ -21,13 +21,8 @@ testcases['turn_on_poles_step_test'] = turn_on_poles_step_test
 backward_testcases = [backward_testcase(tc) for tc in rover_in_flat_world_test]
 testcases['rover_in_flat_world_test'+'_backward'] = backward_testcases
 
-i = 14
-backward_testcases = [backward_testcase(tc) for tc in rover_on_planet_testcases]
-running = backward_testcases[:i]
-xfailed = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases[i:]]
-backward_testcases = running
-backward_testcases.extend(xfailed)
 
+backward_testcases = [backward_testcase(tc) for tc in rover_on_planet_testcases]
 testcases['rover_on_planet_testcases'+'_backward'] = backward_testcases
 
 backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_test]

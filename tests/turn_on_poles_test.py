@@ -11,6 +11,7 @@ def test_planet_width_must_be_multiple_of_four():
 
 
 testcases = [
+    T(Planet,12,RS(0,0,"S"), "rf", RS(9,1,"N"),'turn on pole'),
     T(Planet, 4, RS(0, 2, "N"), "ff", RS(2, 2, "S")),
     T(Planet, 4, RS(0, 3, "N"), "f", RS(2, 2, "S")),
     T(Planet, 4, RS(0, 3, "N"), "rf", RS(1, 2, "S")),

@@ -27,5 +27,5 @@ testcases = [
     T(Planet,12,RS(1,0,"S"), "f", RS(7,1,"N")),
     T(Planet,12,RS(2,0,"S"), "f", RS(8,1,"N")),
     T(Planet,12,RS(11,0,"S"), "f", RS(5,1,"N")),
-    T(Planet,12,RS(0,0,"S"), "rf", RS(9,1,"N"),'turn on pole'), 
+     
              ]

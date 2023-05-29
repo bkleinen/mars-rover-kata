@@ -28,9 +28,9 @@ class Planet(World):
             new_y = self.height-2
             new_direction = 'S' if command == 'f' else 'N'
         else:
-            turns = {'E': 1, 'N' : 4, 'W': 3, 'S': 2}
+            turns = southpole_turns if command == 'f' else northpole_turns
             new_y = 1
-            new_direction = 'N'
+            new_direction = 'N' if command == 'f' else 'S'
         
         new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])   
         return replace(rover_state, pos=P(new_x, new_y), direction=new_direction)
