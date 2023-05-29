@@ -22,7 +22,7 @@ class Planet(World):
 
     def next_on_pole(self, rover_state, command): 
         northpole_turns = {'E': 1, 'N' : 2, 'W': 3, 'S': 4}
-        southpole_turns = {'E': 1, 'N' : 4, 'W': 3, 'S': 2}
+        southpole_turns = {'E': 3, 'N' : 4, 'W': 1, 'S': 2}
         if self.on_north_pole(rover_state.pos):
             turns = northpole_turns if command == 'f' else southpole_turns
             new_y = self.height-2
