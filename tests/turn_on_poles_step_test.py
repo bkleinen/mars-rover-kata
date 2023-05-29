@@ -28,20 +28,24 @@ testcases = [
     T(Planet,4,RS(3,2,"N"), "flf", RS(2,2,"S")),
 
    
-    T(Planet,4,RS(0,1,"S"), "ff", RS(2,1,"N"), xfail=True),
+    T(Planet,4,RS(0,1,"S"), "ff", RS(2,1,"N")),
     T(Planet,4,RS(1,1,"S"), "ff", RS(3,1,"N")),
     T(Planet,4,RS(2,1,"S"), "ff", RS(0,1,"N")),
     T(Planet,4,RS(3,1,"S"), "ff", RS(1,1,"N")),
 
-    T(Planet,4,RS(0,1,"S"), "frf", RS(3,1,"N"), xfail=True),
-    T(Planet,4,RS(1,1,"S"), "frf", RS(0,1,"N"), xfail=True),
-    T(Planet,4,RS(2,1,"S"), "frf", RS(1,1,"N"), xfail=True),
-    T(Planet,4,RS(3,1,"S"), "frf", RS(2,1,"N"), xfail=True),
+    T(Planet,4,RS(0,1,"S"), "f", RS(0,0,"S")), # step1
+    T(Planet,4,RS(0,0,"S"), "r", RS(0,0,"W")), # step2
+    T(Planet,4,RS(0,0,"W"), "f", RS(1,1,"N")), # step3 of the next:
 
-    T(Planet,4,RS(0,1,"S"), "flf", RS(1,1,"N"), xfail=True),
-    T(Planet,4,RS(1,1,"S"), "flf", RS(2,1,"N"), xfail=True),
-    T(Planet,4,RS(2,1,"S"), "flf", RS(3,1,"N"), xfail=True),
-    T(Planet,4,RS(3,1,"S"), "flf", RS(0,1,"N"), xfail=True),
+    T(Planet,4,RS(0,1,"S"), "frf", RS(1,1,"N")),
+    T(Planet,4,RS(1,1,"S"), "frf", RS(2,1,"N")),
+    T(Planet,4,RS(2,1,"S"), "frf", RS(3,1,"N")),
+    T(Planet,4,RS(3,1,"S"), "frf", RS(0,1,"N")),
+
+    T(Planet,4,RS(0,1,"S"), "flf", RS(3,1,"N")),
+    T(Planet,4,RS(1,1,"S"), "flf", RS(0,1,"N")),
+    T(Planet,4,RS(2,1,"S"), "flf", RS(1,1,"N")),
+    T(Planet,4,RS(3,1,"S"), "flf", RS(2,1,"N")),
                     
 ]
       
