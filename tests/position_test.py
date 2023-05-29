@@ -1,4 +1,4 @@
-from mars_rover.rover_state import Position as P
+from mars_rover import Position as P
 
 def test_position_equals():
     p1 = P(4,3)

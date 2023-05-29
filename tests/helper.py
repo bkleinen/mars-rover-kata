@@ -1,5 +1,5 @@
 import dataclasses
-from mars_rover.rover_state import RS
+from mars_rover import RS
 
 def backward_testcase(rover_test_case):
     rtc = rover_test_case
