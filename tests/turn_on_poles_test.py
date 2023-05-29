@@ -33,7 +33,7 @@ testcases = [
 
     T(Planet, 4, RS(1, 1, "S"), "frf", RS(2, 1, "N")),
     T(Planet, 4, RS(2, 1, "N"),    "fflff", RS(1, 1, "S")),
-    T(Planet, 4, RS(1, 1, "S"), "frffflff", RS(1, 1, "S")),
+    T(Planet, 4, RS(1, 1, "S"), "frfffrff", RS(1, 1, "S")),
 
     T(Planet, 8, RS(0, 7, "N"), "f", RS(4, 6, "S")),
     T(Planet, 8, RS(0, 6, "N"), "ff", RS(4, 6, "S")),

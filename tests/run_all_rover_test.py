@@ -25,6 +25,7 @@ testcases['rover_in_flat_world_test'+'_backward'] = backward_testcases
 
 
 backward_testcases = [backward_testcase(tc) for tc in rover_on_planet_testcases]
+backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases]
 testcases['rover_on_planet_testcases'+'_backward'] = backward_testcases
 
 backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_step_test]
@@ -37,7 +38,7 @@ testcases['turn_on_poles_test'+'_backward'] = backward_testcases
 
 
 backward_testcases = [backward_testcase(tc) for tc in pole_loops_testcases]
-backward_testcases = [dataclasses.replace(tc,xfail=False) for tc in backward_testcases]
+backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases]
 testcases['pole_loops_testcases'] = pole_loops_testcases
 testcases['pole_loops_testcases'+'_backward'] = backward_testcases
 
@@ -46,7 +47,7 @@ def pytest_testcase(rtc, filename):
     filename_marked = f"file:{filename}.py"
     testcase_note = filename_marked if (rtc.note is None or rtc.note == "") else f"{filename_marked}-{rtc.note}"
     testtuple = (testcase_note, rtc.world, rtc.dimension, rtc.init, rtc.command, rtc.expected)
-    if True: #rtc.xfail:
+    if rtc.xfail:
         return pytest.param(*testtuple,marks=pytest.mark.xfail) 
     else:
         return testtuple
