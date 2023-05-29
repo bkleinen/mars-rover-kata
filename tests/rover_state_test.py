@@ -1,5 +1,4 @@
-
-from mars_rover.rover_state import RS, RoverState
+from mars_rover import RS
 
 def test_str_rep():
     rover_state = RS(3,4,'E')

@@ -1,7 +1,6 @@
-from mars_rover.rover_state import RS, RoverState
+
 from dataclasses import dataclass
-from mars_rover.world import World
-from mars_rover.planet import Planet
+from mars_rover import RoverState
 
 @dataclass
 class RoverTestCase:
