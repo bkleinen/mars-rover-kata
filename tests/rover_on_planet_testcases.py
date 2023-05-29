@@ -1,7 +1,5 @@
 import pytest
-from lib.rover import Rover, World
-from lib.rover_state import RS
-from lib.planet import Planet
+from mars_rover import Planet, RS
 from tests.rover_test_case import RoverTestCase as T
 
 testcases = [

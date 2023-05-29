@@ -1,7 +1,8 @@
 import pytest
-from lib.rover import Rover
-from lib.planet import Planet
-from lib.rover_state import RS, ObstacleEncountered, Position as P
+from mars_rover.rover import Rover
+from mars_rover.planet import Planet
+from mars_rover.rover_state import RS
+from mars_rover.world import ObstacleEncountered
 
 
 planet_string = """

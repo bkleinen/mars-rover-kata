@@ -1,7 +1,7 @@
 import pytest
 import dataclasses
-from lib.planet import Planet
-from lib.rover import Rover
+from mars_rover.planet import Planet
+from mars_rover.rover import Rover
 from tests.helper import backward_testcase
 from tests.example_testcases import testcases as example_testcases
 from tests.rover_in_flat_world_test import testcases as rover_in_flat_world_test
