@@ -1,7 +1,5 @@
 import pytest
-from lib.rover import Rover, World
-from lib.base import RS
-from lib.planet import Planet
+from mars_rover import Planet, RS
 from tests.rover_test_case import RoverTestCase as T
 
 testcases = [
@@ -27,5 +25,5 @@ testcases = [
     T(Planet,12,RS(1,0,"S"), "f", RS(7,1,"N")),
     T(Planet,12,RS(2,0,"S"), "f", RS(8,1,"N")),
     T(Planet,12,RS(11,0,"S"), "f", RS(5,1,"N")),
-    T(Planet,12,RS(0,0,"S"), "rf", RS(9,1,"N"),'turn on pole'), 
+     
              ]

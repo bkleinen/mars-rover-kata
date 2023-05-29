@@ -10,9 +10,7 @@ class Position:
         y = self.y + other.y
         return Position(x, y)
 
-P = Position
-
-@dataclass(frozen=False)
+@dataclass(frozen=True)
 class RoverState:
     pos: Position
     direction: str
@@ -23,6 +21,3 @@ class RoverState:
 # shorthand factory for RoverState:
 def RS(x,y,d):
     return RoverState(Position(x,y),d)
-
-class ObstacleEncountered(Exception):
-    pass

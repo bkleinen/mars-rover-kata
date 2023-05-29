@@ -1,11 +1,9 @@
 import dataclasses
-from lib.base import Position, ObstacleEncountered
-
-P = Position
+from mars_rover.rover_state import Position as P
 
 class Command:
     @classmethod
-    def for_str(cls, input, rover_state = None):
+    def for_str(cls, input):
         if input in ['f', 'b']:
             return  MoveCommand(input)
         if input in ['l', 'r']:
@@ -14,9 +12,8 @@ class Command:
         
 
 class MoveCommand(Command):
-    def __init__(self, input, rover_state = None):
+    def __init__(self, input):
         self.command = input
-        self.state = rover_state
          
     def execute(self, state, world):
         return world.next(state, self.command)
@@ -32,10 +29,10 @@ class TurnCommand(Command):
         return dataclasses.replace(state, direction=new_direction)
 
     directions = ["N", "E", "S", "W"]
-    turns = {'r' : 1, 'l': -1}
+    turn = {'r' : 1, 'l': -1}
     def get_new_direction(self, direction, command):
         i = self.directions.index(direction)
-        d = self.turns[command]
-        new_index = (i + d) % len(self.directions)
+        delta = self.turn[command]
+        new_index = (i + delta) % len(self.directions)
         new_direction = self.directions[new_index]
         return new_direction

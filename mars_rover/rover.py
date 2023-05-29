@@ -1,6 +1,5 @@
-from lib.world import World
-from lib.command import Command 
-
+from mars_rover.world import World
+from mars_rover.command import Command
 
 class Rover:
     def __init__(self, rover_state, world = World(10,10)):

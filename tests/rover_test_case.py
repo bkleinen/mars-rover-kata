@@ -1,7 +1,6 @@
-from lib.base import RS, RoverState
+
 from dataclasses import dataclass
-from lib.world import World
-from lib.planet import Planet
+from mars_rover import RoverState
 
 @dataclass
 class RoverTestCase:

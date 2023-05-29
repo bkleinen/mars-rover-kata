@@ -1,8 +1,9 @@
 from dataclasses import dataclass, replace
-from lib.rover_helper import string_to_matrix, matrix_to_string, create_field
-from lib.base import Position as P
-from lib.base import ObstacleEncountered
+from mars_rover.rover_helper import string_to_matrix, matrix_to_string, create_field
+from mars_rover.rover_state import Position as P
 
+class ObstacleEncountered(Exception):
+    pass
 @dataclass(frozen=False)
 class World:
     width: int

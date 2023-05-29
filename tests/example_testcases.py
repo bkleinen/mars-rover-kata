@@ -1,8 +1,5 @@
-from lib.base import RS, RoverState
 from dataclasses import dataclass
-from lib.planet import Planet
-from lib.world import World
-
+from mars_rover import RS, Planet, World
 from tests.rover_test_case import RoverTestCase as T
 
 testcases = [

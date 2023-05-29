@@ -11,6 +11,6 @@ fi
 while true; do
     clear
     # pytest -x -vv $subdir
-    pytest  -vv $subdir
+    pytest -vv $subdir
     fswatch ./**/*.py  -1
 done
