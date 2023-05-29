@@ -9,11 +9,6 @@ class Planet(World):
             raise AttributeError('width must be multiple of 4')
         super().__post_init__()
 
-   # def next_state(self, rover_state, command): 
-   #     if self.not_on_pole(rover_state):
-   #         return super().next_position(rover_state, command)
-   #     return self.next_on_pole(rover_state)
-
     def next_state(self, rover_state, command): 
         if not self.on_pole(rover_state.pos):
             return super().next_state(rover_state, command)
