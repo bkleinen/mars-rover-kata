@@ -8,7 +8,7 @@ testcases.extend(simple_tc)
 
 
 def pytest_testcase(rtc):
-    testtuple = (rtc.dimension, rtc.init, rtc.command, rtc.expected)
+    testtuple = (rtc.note, rtc.dimension, rtc.init, rtc.command, rtc.expected)
     if rtc.xfail:
         return pytest.param(*testtuple,marks=pytest.mark.xfail) 
     else:
@@ -16,8 +16,8 @@ def pytest_testcase(rtc):
 
 testcases = [pytest_testcase(testcase) for testcase in testcases]
 
-@pytest.mark.parametrize("dimension,init,command,expected", testcases)
-def test_rover_move_on_planet(dimension, init, command, expected):
+@pytest.mark.parametrize("note,dimension,init,command,expected", testcases)
+def test_rover_move_on_planet(note,dimension, init, command, expected):
     rover = Rover(init, Planet(dimension,dimension))
     rover.execute(command)
     assert rover.position() == expected

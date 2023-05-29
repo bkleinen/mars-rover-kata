@@ -7,6 +7,7 @@ class RoverTestCase:
     init: RoverState
     command: str
     expected: RoverState
+    note: str = "RoverTestCase"
     xfail: bool = False
 
 T = RoverTestCase
@@ -24,7 +25,7 @@ testcases = [
     T(12,RS(3,3,"N"), "ffr", RS(3,5,"E")),
     T(12,RS(3,3,"N"), "rf", RS(4,3,"E")),
     T(12,RS(3,3,"N"), "ffrfflf", RS(5,6,"N")),
-    T(12,RS(1,11,"N"), "f", RS(1,2,"N"), True),
+    T(12,RS(1,11,"N"), "f", RS(1,2,"N"), xfail=True),
              ]
 
 testcases2 = [
