@@ -29,7 +29,7 @@ backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_test
 testcases['rover_on_planet_testcases'+'_backward'] = backward_testcases
 
 backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_step_test]
-backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases]
+#backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases]
 testcases['turn_on_poles_step_test'+'_backward'] = backward_testcases
 
 backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_test]
