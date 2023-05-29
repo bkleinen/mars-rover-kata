@@ -10,9 +10,7 @@ class Position:
         y = self.y + other.y
         return Position(x, y)
 
-P = Position
-
-@dataclass(frozen=False)
+@dataclass(frozen=True)
 class RoverState:
     pos: Position
     direction: str

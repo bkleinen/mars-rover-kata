@@ -1,7 +1,5 @@
 import pytest
-from mars_rover.rover import Rover, World
-from mars_rover.world import ObstacleEncountered
-from mars_rover.rover_state import RS
+from mars_rover import Rover, World, RS, ObstacleEncountered
 
 def test_world_to_str_1():
     world = World(10, 1)

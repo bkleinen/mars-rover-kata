@@ -1,7 +1,5 @@
 import pytest
-import dataclasses
-from mars_rover.planet import Planet
-from mars_rover.rover import Rover
+from mars_rover import Rover
 from tests.helper import backward_testcase
 from tests.example_testcases import testcases as example_testcases
 from tests.rover_in_flat_world_test import testcases as rover_in_flat_world_test
@@ -49,10 +47,10 @@ def pytest_testcase(rtc, filename):
         return pytest.param(*testtuple,marks=pytest.mark.xfail) 
     else:
         return testtuple
-# [(key, value_item) for key in a_map.keys() for value_item in a_map[key]]
-testcases = [pytest_testcase(testcase, filename) for filename in testcases.keys() for testcase in testcases[filename]]
+    
+testcases_list = [pytest_testcase(testcase, filename) for filename in testcases.keys() for testcase in testcases[filename]]
 
-@pytest.mark.parametrize("note,world,dimension,init,command,expected", testcases)
+@pytest.mark.parametrize("note,world,dimension,init,command,expected", testcases_list)
 def test_rover(note, world, dimension, init, command, expected):
     rover = Rover(init, world(dimension,dimension))
     rover.execute(command)
