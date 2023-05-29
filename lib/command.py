@@ -1,5 +1,5 @@
 import dataclasses
-from lib.base import Position as P
+from lib.rover_state import Position as P
 
 class Command:
     @classmethod

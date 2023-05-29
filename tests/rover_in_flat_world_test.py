@@ -1,7 +1,7 @@
 import pytest
 from lib.rover import Rover, World
-from lib.base import ObstacleEncountered
-from lib.base import RoverState, Position, RS
+from lib.rover_state import ObstacleEncountered
+from lib.rover_state import RoverState, Position, RS
 from tests.rover_test_case import RoverTestCase as T
 import dataclasses
 

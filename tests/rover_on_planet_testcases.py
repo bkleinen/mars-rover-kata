@@ -1,6 +1,6 @@
 import pytest
 from lib.rover import Rover, World
-from lib.base import RS
+from lib.rover_state import RS
 from lib.planet import Planet
 from tests.rover_test_case import RoverTestCase as T
 

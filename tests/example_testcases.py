@@ -1,4 +1,4 @@
-from lib.base import RS, RoverState
+from lib.rover_state import RS, RoverState
 from dataclasses import dataclass
 from lib.planet import Planet
 from lib.world import World

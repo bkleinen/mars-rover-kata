@@ -1,5 +1,5 @@
 from lib.rover import World
-from lib.base import Position as P
+from lib.rover_state import Position as P
 from dataclasses import replace
 
 

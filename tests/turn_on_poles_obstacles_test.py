@@ -1,7 +1,7 @@
 import pytest
 from lib.rover import Rover
 from lib.planet import Planet
-from lib.base import RS, ObstacleEncountered, Position as P
+from lib.rover_state import RS, ObstacleEncountered, Position as P
 
 
 planet_string = """
