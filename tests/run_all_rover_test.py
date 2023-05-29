@@ -8,7 +8,11 @@ testcases.extend(simple_tc)
 
 
 def pytest_testcase(rtc):
-    return (rtc.dimension, rtc.init, rtc.command, rtc.expected)
+    testtuple = (rtc.dimension, rtc.init, rtc.command, rtc.expected)
+    if rtc.xfail:
+        return pytest.param(*testtuple,marks=pytest.mark.xfail) 
+    else:
+        return testtuple
 
 testcases = [pytest_testcase(testcase) for testcase in testcases]
 
