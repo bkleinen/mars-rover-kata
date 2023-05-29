@@ -10,6 +10,6 @@ class RoverTestCase:
     init: RoverState
     command: str
     expected: RoverState
-    note: str = "RoverTestCase"
+    note: str = ""
     xfail: bool = False
 
