@@ -31,9 +31,9 @@ testcases = [
     T(Planet, 4, RS(0, 0, "S"), "f",  RS(2, 1, "N")),
     T(Planet, 4, RS(1, 2, "N"), "frf", RS(2, 2, "S")),
 
-    T(Planet, 4, RS(1, 1, "S"), "frf", RS(0, 1, "N"), xfail=True),
-    T(Planet, 4, RS(0, 1, "N"),    "ffrff", RS(1, 1, "S")),
-    T(Planet, 4, RS(1, 1, "S"), "frfffrff", RS(1, 1, "S"), xfail=True),
+    T(Planet, 4, RS(1, 1, "S"), "frf", RS(2, 1, "N")),
+    T(Planet, 4, RS(2, 1, "N"),    "fflff", RS(1, 1, "S")),
+    T(Planet, 4, RS(1, 1, "S"), "frffflff", RS(1, 1, "S")),
 
     T(Planet, 8, RS(0, 7, "N"), "f", RS(4, 6, "S")),
     T(Planet, 8, RS(0, 6, "N"), "ff", RS(4, 6, "S")),

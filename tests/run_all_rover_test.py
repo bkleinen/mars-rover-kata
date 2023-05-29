@@ -30,7 +30,7 @@ backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_step_test]
 testcases['turn_on_poles_step_test'+'_backward'] = backward_testcases
 
 backward_testcases = [backward_testcase(tc) for tc in turn_on_poles_test]
-backward_testcases = [dataclasses.replace(tc,xfail=True) for tc in backward_testcases]
+# backward_testcases = [dataclasses.replace(tc,xfail=False) for tc in backward_testcases]
 testcases['turn_on_poles_test'+'_backward'] = backward_testcases
 
 
