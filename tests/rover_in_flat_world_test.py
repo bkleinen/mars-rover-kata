@@ -3,6 +3,7 @@ from lib.rover import Rover, World
 from lib.base import ObstacleEncountered
 from lib.base import RoverState, Position, RS
 from tests.rover_test_case import RoverTestCase as T
+import dataclasses
 
 testcases = [
     T(World,10,RS(0,0,"N"), "f", RS(0,1,"N")),

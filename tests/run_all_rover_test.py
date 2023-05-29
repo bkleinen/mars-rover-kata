@@ -1,6 +1,7 @@
 import pytest
 from lib.planet import Planet
 from lib.rover import Rover
+from tests.helper import backward_testcase
 from tests.example_testcases import testcases as example_testcases
 from tests.rover_in_flat_world_test import testcases as rover_in_flat_world_test
 from tests.rover_on_planet_testcases import testcases as rover_on_planet_testcases
@@ -14,6 +15,9 @@ testcases['rover_on_planet_testcases'] = rover_on_planet_testcases
 testcases['turn_on_poles_step_test'] = turn_on_poles_step_test
 testcases['turn_on_poles_test'] = turn_on_poles_test
 
+
+backward_testcases = [backward_testcase(tc) for tc in rover_in_flat_world_test]
+testcases['rover_in_flat_world_test'+'_backward'] = backward_testcases
 
 def pytest_testcase(rtc, filename):
     filename_marked = f"file:{filename}.py"
