@@ -1,14 +1,16 @@
 import pytest
 from lib.planet import Planet
 from lib.rover import Rover
-from tests.rover_simple_movement_testcases import testcases as simple_tc
-
+from tests.example_testcases import testcases as example_tc
+from tests.rover_in_flat_world_test import testcases as flat_world_tc
 testcases = []
-testcases.extend(simple_tc)
+
+testcases.extend(example_tc)
+testcases.extend(flat_world_tc)
 
 
 def pytest_testcase(rtc):
-    testtuple = (rtc.note, rtc.dimension, rtc.init, rtc.command, rtc.expected)
+    testtuple = (rtc.note, rtc.world, rtc.dimension, rtc.init, rtc.command, rtc.expected)
     if rtc.xfail:
         return pytest.param(*testtuple,marks=pytest.mark.xfail) 
     else:
@@ -16,8 +18,8 @@ def pytest_testcase(rtc):
 
 testcases = [pytest_testcase(testcase) for testcase in testcases]
 
-@pytest.mark.parametrize("note,dimension,init,command,expected", testcases)
-def test_rover_move_on_planet(note,dimension, init, command, expected):
-    rover = Rover(init, Planet(dimension,dimension))
+@pytest.mark.parametrize("note,world,dimension,init,command,expected", testcases)
+def test_rover_move_on_planet(note, world, dimension, init, command, expected):
+    rover = Rover(init, world(dimension,dimension))
     rover.execute(command)
     assert rover.position() == expected
