@@ -1,6 +1,7 @@
 import pytest
-from lib.rover import Rover, World, ObstacleEncountered
-from lib.rover import RoverState, Position
+from lib.rover import Rover, World
+from lib.base import ObstacleEncountered
+from lib.base import RoverState, Position
 
 def RS(x,y,d):
     return RoverState(Position(x,y),d)
