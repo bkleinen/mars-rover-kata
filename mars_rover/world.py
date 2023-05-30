@@ -54,7 +54,7 @@ class World:
     def next_state(self, rover_state, command):
         delta = rover_state.delta(command)
         new_pos = self.wrap(rover_state.pos + delta)
-        return replace(rover_state, pos=new_pos)
+        return rover_state.replace(pos=new_pos)
     
       
 

@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace as dataclasses_replace
 from enum import Enum
 
 @dataclass(frozen=True)
@@ -26,6 +26,25 @@ class Orientation(Enum):
     def turn(self, turns):
         return self.__class__.for_number(self.value + turns)
     
+    @classmethod
+    def deltas(cls):
+        return {
+            'f' :  {cls.N : P(0,1), cls.S : P(0,-1), cls.W : P(-1, 0), cls.E : P(1, 0)},
+            'b' :  {cls.N : P(0,-1), cls.S : P(0,1), cls.W : P(1, 0),  cls.E : P(-1, 0)}
+        }
+    def delta(self, command): 
+        delta = self.deltas()[command][self]
+        return delta
+    
+    @classmethod
+    def pole_quarter_turns(cls):
+        return { cls.N : {'f': {cls.E : 1, cls.N : 2, cls.W : 3, cls.S : 0},
+                          'b': {cls.E : 3, cls.N : 0, cls.W : 1, cls.S : 2}},
+                 cls.S : {'f': {cls.E : 1, cls.N : 0, cls.W : 3, cls.S : 2},
+                          'b': {cls.E : 3, cls.N : 2, cls.W : 1, cls.S : 0}}
+            }
+    def quarter_turns_for_on(self, command, pole):
+        return self.pole_quarter_turns()[pole][command][self.direction_str]
 @dataclass(frozen=True)
 class Direction:
     direction_str: str
@@ -66,8 +85,10 @@ class RoverState:
     pos: Position
     direction: str
     direction_new: Direction = field(init=False)
+    orientation: Direction = field(init=False)
     def __post_init__(self):
         self.direction_new = Direction(self.direction)
+        self.orientation = Direction(self.direction)
 
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
@@ -77,6 +98,12 @@ class RoverState:
 
     def get_direction(self):
         return self.direction_new
+    
+    def get_orientation(self):
+        return self.orientation
+    
+    def replace(self, **kwargs):
+        return dataclasses_replace(self, **kwargs)
     
 
 # shorthand factory for RoverState:
