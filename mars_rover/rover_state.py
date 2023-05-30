@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-
+from enum import Enum
 
 @dataclass(frozen=True)
 class Position:
@@ -13,7 +13,19 @@ class Position:
 
 P = Position
 
+class Orientation(Enum):
+    N = 0
+    E = 1
+    S = 2
+    W = 3
 
+    @classmethod
+    def for_number(cls, i):
+        return Orientation(i % 4)
+
+    def turn(self, turns):
+        return self.__class__.for_number(self.value + turns)
+    
 @dataclass(frozen=True)
 class Direction:
     direction_str: str
