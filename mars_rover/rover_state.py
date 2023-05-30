@@ -88,10 +88,8 @@ class Direction:
 class RoverState:
     pos: Position
     direction: str = field(init=False)
-    direction_new: Direction = field(init=False)
     orientation: Direction
     def __post_init__(self):
-        self.direction_new = Direction(self.orientation.name)
         self.direction = self.orientation.name
 
     def __repr__(self) -> str:
