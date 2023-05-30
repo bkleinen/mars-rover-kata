@@ -37,6 +37,16 @@ class Direction:
         new_direction = self.directions[new_index]
         return new_direction
     
+    northpole_turns = {
+            'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
+            'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}}
+    southpole_turns = {
+            'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
+            'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
+   
+    def next_x_on_pole(self, command):
+        turns = self.northpole_turns[command]
+        turns = self.southpole_turns[command]
 
 
 @dataclass(frozen=False)
