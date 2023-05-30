@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+
 @dataclass(frozen=True)
 class Position:
     x: int
@@ -10,6 +11,7 @@ class Position:
         y = self.y + other.y
         return Position(x, y)
 
+P = Position
 @dataclass(frozen=True)
 class Direction:
     direction: str
@@ -27,7 +29,13 @@ class RoverState:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
     def delta(self, command):
-        pass
+        deltas = {
+            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
+            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
+        }
+        delta = deltas[command][self.direction]
+        return delta
+
 
 # shorthand factory for RoverState:
 def RS(x,y,d):
