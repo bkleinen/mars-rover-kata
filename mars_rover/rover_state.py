@@ -14,6 +14,9 @@ class Position:
 class Direction:
     direction: str
 
+    def delta_square(self, command):
+        return None
+
 @dataclass(frozen=False)
 class RoverState:
     pos: Position
@@ -22,13 +25,13 @@ class RoverState:
     def __post_init__(self):
         self.direction_new = Direction(self.direction)
 
-
-
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
-    def delta_square(self, command):
-        return None
+    def direction(self):
+        return self
+    
+
 # shorthand factory for RoverState:
 def RS(x,y,d):
     return RoverState(Position(x,y),d)
