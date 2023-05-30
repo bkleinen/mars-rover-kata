@@ -45,7 +45,7 @@ class Orientation(Enum):
                           'b': {cls.E : 3, cls.N : 2, cls.W : 1, cls.S : 0}}
             }
     def quarter_turns_for_on(self, command, pole):
-        return self.pole_quarter_turns()[pole][command][self.direction_str]
+        return self.pole_quarter_turns()[pole][command][self]
 @dataclass(frozen=True)
 class Direction:
     direction_str: str
