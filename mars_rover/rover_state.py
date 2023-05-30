@@ -87,16 +87,10 @@ class Direction:
 @dataclass(frozen=False)
 class RoverState:
     pos: Position
-    direction: str = field(init=False)
     orientation: Direction
-    def __post_init__(self):
-        self.direction = self.orientation.name
 
     def __repr__(self) -> str:
-        return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
-
-    def delta(self, command):
-        return self.orientation.delta(command)
+        return f"RS({self.pos.x},{self.pos.y},'{self.orientation.name}')"
     
     def replace(self, **kwargs):
         return dataclasses_replace(self, **kwargs)
