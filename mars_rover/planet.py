@@ -22,16 +22,20 @@ class Planet(World):
             'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
             'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
         
-    def next_on_pole(self, rover_state, command): 
+    def next_on_pole(self, rover_state, command):
+        
         if self.on_north_pole(rover_state.pos):
+            pole = 'N'
             turns = self.northpole_turns[command]
             new_y = self.height-2
             new_direction = 'S' if command == 'f' else 'N'
         else:
+            pole = 'S'
             turns = self.southpole_turns[command]
             new_y = 1
             new_direction = 'N' if command == 'f' else 'S'
         
+        new_x = rover_state.next_on_pole(command,pole)
         new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])   
         return replace(rover_state, pos=P(new_x, new_y), direction=new_direction)
 

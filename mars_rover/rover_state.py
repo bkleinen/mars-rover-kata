@@ -12,6 +12,8 @@ class Position:
         return Position(x, y)
 
 P = Position
+
+
 @dataclass(frozen=True)
 class Direction:
     direction_str: str
@@ -34,6 +36,8 @@ class Direction:
         new_index = (i + delta_i) % len(self.directions)
         new_direction = self.directions[new_index]
         return new_direction
+    
+
 
 @dataclass(frozen=False)
 class RoverState:
@@ -51,6 +55,9 @@ class RoverState:
 
     def get_direction(self):
         return self.direction_new
+    
+    def next_on_pole(self, command,pole):
+        pass
 
 # shorthand factory for RoverState:
 def RS(x,y,d):
