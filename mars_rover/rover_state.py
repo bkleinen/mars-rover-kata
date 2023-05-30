@@ -45,10 +45,16 @@ class Direction:
             'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
             'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
    
+    pole_turns = { 'N' : {
+            'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
+            'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}},
+              'S' : {
+            'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
+            'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
+            }
     def quarter_turns_for_on(self, command, pole):
-        turns = self.northpole_turns[command]
-        turns = self.southpole_turns[command]
-        return turns[self.direction_str] 
+        return 1
+        return self.pole_turns[pole][command][self.direction_str]
 
 
 @dataclass(frozen=False)
