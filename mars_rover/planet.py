@@ -1,5 +1,5 @@
 from mars_rover.rover import World
-from mars_rover.rover_state import Position as P
+from mars_rover.rover_state import Position as P, Orientation as Rose
 from dataclasses import replace
 
 
@@ -22,14 +22,17 @@ class Planet(World):
             pole = 'N'
             new_y = self.height-2
             new_direction = 'S' if command == 'f' else 'N'
+            new_orientation = Rose.S if command == 'f' else Rose.N
         else:
             pole = 'S'
             new_y = 1
             new_direction = 'N' if command == 'f' else 'S'
+            new_orientation = Rose.N if command == 'f' else Rose.S
         
         quarter_turns = rover_state.get_direction().quarter_turns_for_on(command, pole)
         new_x = self.quarter_turn(rover_state.pos.x, quarter_turns)   
-        return rover_state.replace(pos=P(new_x, new_y), direction=new_direction)
+        #return rover_state.replace(pos=P(new_x, new_y), direction=new_direction)
+        return rover_state.replace(pos=P(new_x, new_y), orientation=new_orientation)
     
     def on_pole(self, pos):
         return self.on_north_pole(pos) or self.on_south_pole(pos)
