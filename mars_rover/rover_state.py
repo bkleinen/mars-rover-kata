@@ -28,9 +28,6 @@ class RoverState:
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
-    def direction(self):
-        return self
-    
 
 # shorthand factory for RoverState:
 def RS(x,y,d):
