@@ -7,7 +7,7 @@ This is my solution of the mars rover kata in python.
 I developed it using TDD.
 
 I've implemented both a square World and a Planet with Poles.
-
+Drawing this made it occur to me that this is missing an abstraction for Direction:
 ```mermaid
 classDiagram
     World <|-- Planet
@@ -42,7 +42,55 @@ classDiagram
     MoveCommand ..> World
 
 ```
+So this is the Goal: 
 
+```mermaid
+classDiagram
+    World <|-- Planet
+    class World{
+        int width
+        int height
+        add_obstacle()
+        RoverState next(rover_state, command)
+    }
+    class Planet{
+      RoverState next_on_pole(rover_state, command)
+    }
+    class Rover{
+        RoverState rover_state
+        World world
+        execute(input)
+        RoverState position()
+    }
+    Rover ..> Command
+    Rover *-- RoverState
+    RoverState *-- Direction
+    RoverState *-- Position
+    Rover --> World
+    
+    class RoverState{
+      Position pos
+      Direction direction
+      
+    }
+    class Position{
+      int x
+      int y
+    }
+
+    Command <|-- MoveCommand
+    Command <|-- TurnCommand
+    Command ..> RoverState
+    MoveCommand ..> World
+    #TurnCommand ..> Direction
+    class Command{
+      execute(rover_state, world)
+    }
+    Direction
+    
+     
+
+```
 
 https://mermaid.js.org/syntax/classDiagram.html
 
