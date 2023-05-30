@@ -7,42 +7,8 @@ This is my solution of the mars rover kata in python.
 I developed it using TDD.
 
 I've implemented both a square World and a Planet with Poles.
-Drawing this made it occur to me that this is missing an abstraction for Direction:
-```mermaid
-classDiagram
-    World <|-- Planet
-    class World{
-        int width
-        int height
-        add_obstacle()
-        RoverState next(rover_state, command)
-    }
-    class Rover{
-        RoverState rover_state
-        World world
-        execute(Command)
-        RoverState position()
-    }
-    Rover *-- RoverState
-    RoverState *-- Position
-    Rover --> World
-    
-    class RoverState{
-      Position pos
-      str direction
-      
-    }
-    class Position{
-      int x
-      int y
-    }
+Drawing this made it occur to me that this is missing an abstraction for Direction or rather Orientation handling everything that has to do with 'N','E','S','W':
 
-    Command <|-- MoveCommand
-    Command <|-- TurnCommand
-    MoveCommand ..> World
-
-```
-So this is the Goal: 
 
 ```mermaid
 classDiagram
@@ -64,19 +30,26 @@ classDiagram
     }
     Rover ..> Command
     Rover *-- RoverState
-    RoverState *-- Direction
+    RoverState *-- Orientation
     RoverState *-- Position
     Rover --> World
     
     class RoverState{
       Position pos
-      Direction direction
+      Orientation orientation
       
     }
     class Position{
       int x
       int y
     }
+
+
+    class Orientation{
+      <<Enumeration>>
+      N, E, S, W
+    }
+     Orientation
 
     Command <|-- MoveCommand
     Command <|-- TurnCommand
@@ -85,7 +58,7 @@ classDiagram
     class Command{
       execute(rover_state, world)
     }
-    Direction
+    
     
      
 
