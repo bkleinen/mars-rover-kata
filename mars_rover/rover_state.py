@@ -14,7 +14,16 @@ class Position:
 P = Position
 @dataclass(frozen=True)
 class Direction:
-    direction: str
+    direction_str: str
+    
+    def delta(self, command):
+        deltas = {
+            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
+            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
+        }
+        delta = deltas[command][self.direction_str]
+        return delta
+
 
 
 @dataclass(frozen=False)
@@ -29,12 +38,8 @@ class RoverState:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
     def delta(self, command):
-        deltas = {
-            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
-            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
-        }
-        delta = deltas[command][self.direction]
-        return delta
+        return self.direction_new.delta(command)
+
 
 
 # shorthand factory for RoverState:
