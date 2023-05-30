@@ -38,13 +38,6 @@ class Direction:
         return new_direction
         return Direction(new_direction)
     
-    northpole_turns = {
-            'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
-            'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}}
-    southpole_turns = {
-            'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
-            'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
-   
     pole_quarter_turns = { 'N' : {
             'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
             'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}},

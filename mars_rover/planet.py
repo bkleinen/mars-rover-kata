@@ -15,23 +15,15 @@ class Planet(World):
         
         return self.next_on_pole(rover_state, command)
 
-    northpole_turns = {
-            'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
-            'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}}
-    southpole_turns = {
-            'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
-            'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
         
     def next_on_pole(self, rover_state, command):
         
         if self.on_north_pole(rover_state.pos):
             pole = 'N'
-            turns = self.northpole_turns[command]
             new_y = self.height-2
             new_direction = 'S' if command == 'f' else 'N'
         else:
             pole = 'S'
-            turns = self.southpole_turns[command]
             new_y = 1
             new_direction = 'N' if command == 'f' else 'S'
         
