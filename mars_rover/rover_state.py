@@ -11,9 +11,19 @@ class Position:
         return Position(x, y)
 
 @dataclass(frozen=True)
+class Direction:
+    direction: str
+
+@dataclass(frozen=False)
 class RoverState:
     pos: Position
     direction: str
+    direction_new: Direction
+    def __init__(self, pos, direction, direction_new=None):
+        self.pos = pos
+        self.direction = direction
+        self.direction_new = Direction(direction)
+
 
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
