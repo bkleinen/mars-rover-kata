@@ -99,18 +99,8 @@ class RoverState:
 
     def delta(self, command):
         return self.direction_new.delta(command)
-
-    def get_direction(self):
-        return self.direction_new
-    
-    def get_orientation(self):
-        return self.orientation
     
     def replace(self, **kwargs):
-        if 'direction' in kwargs.keys():
-            raise AttributeError("deprecated")
-            kwargs['orientation'] = Orientation[kwargs['direction']]
-            kwargs.pop('direction')
         return dataclasses_replace(self, **kwargs)
     
 

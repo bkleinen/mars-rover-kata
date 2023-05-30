@@ -25,6 +25,6 @@ class TurnCommand(Command):
         self.command = input
     
     def execute(self, state, _world):
-        new_direction = state.get_orientation().turn(self.command)
+        new_direction = state.orientation.turn(self.command)
         return state.replace(orientation=new_direction)
 
