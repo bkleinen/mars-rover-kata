@@ -19,19 +19,16 @@ class Planet(World):
     def next_on_pole(self, rover_state, command):
         
         if self.on_north_pole(rover_state.pos):
-            pole1 = 'N'
             pole = Rose.N
             
             new_y = self.height-2
             new_orientation = Rose.S if command == 'f' else Rose.N
         else:
-            pole1 = 'S'
             pole = Rose.S
             new_y = 1
             new_orientation = Rose.N if command == 'f' else Rose.S
         
         quarter_turns = rover_state.orientation.quarter_turns_for_on(command, pole)
-        quarter_turns = rover_state.get_direction().quarter_turns_for_on(command, pole1)
         new_x = self.quarter_turn(rover_state.pos.x, quarter_turns)   
         return rover_state.replace(pos=P(new_x, new_y), orientation=new_orientation)
     
