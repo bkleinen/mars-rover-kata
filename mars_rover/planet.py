@@ -35,8 +35,8 @@ class Planet(World):
             new_y = 1
             new_direction = 'N' if command == 'f' else 'S'
         
-        new_x = rover_state.next_on_pole(command,pole)
-        new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])   
+        quarter_turns = rover_state.get_direction().quarter_turns_for_on(command,pole)
+        new_x = self.quarter_turn(rover_state.pos.x,turns[rover_state.direction])   
         return replace(rover_state, pos=P(new_x, new_y), direction=new_direction)
 
     def on_pole(self, pos):
@@ -48,7 +48,7 @@ class Planet(World):
     def on_south_pole(self, pos):
         return pos.y == 0
     
-    def turn(self, x, quarters):
+    def quarter_turn(self, x, quarters):
         quarter = self.width/4
         return int((x + quarters * quarter) % self.width)
     

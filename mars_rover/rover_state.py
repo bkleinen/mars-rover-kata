@@ -29,13 +29,14 @@ class Direction:
 
     directions = ["N", "E", "S", "W"]
     turns = {'r' : 1, 'l': -1}
+
     def turn(self, command):
-        pass
         i = self.directions.index(self.direction_str)
         delta_i = self.turns[command]
         new_index = (i + delta_i) % len(self.directions)
         new_direction = self.directions[new_index]
         return new_direction
+        return Direction(new_direction)
     
     northpole_turns = {
             'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
@@ -44,9 +45,10 @@ class Direction:
             'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
             'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
    
-    def next_x_on_pole(self, command):
+    def quarter_turns_for_on(self, command, pole):
         turns = self.northpole_turns[command]
         turns = self.southpole_turns[command]
+        return turns[self.direction_str] 
 
 
 @dataclass(frozen=False)
@@ -66,8 +68,6 @@ class RoverState:
     def get_direction(self):
         return self.direction_new
     
-    def next_on_pole(self, command,pole):
-        pass
 
 # shorthand factory for RoverState:
 def RS(x,y,d):
