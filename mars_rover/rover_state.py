@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class Position:
@@ -18,16 +18,17 @@ class Direction:
 class RoverState:
     pos: Position
     direction: str
-    direction_new: Direction
-    def __init__(self, pos, direction, direction_new=None):
-        self.pos = pos
-        self.direction = direction
-        self.direction_new = Direction(direction)
+    direction_new: Direction = field(init=False)
+    def __post_init__(self):
+        self.direction_new = Direction(self.direction)
+
 
 
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
+    def delta_square(self, command):
+        return None
 # shorthand factory for RoverState:
 def RS(x,y,d):
     return RoverState(Position(x,y),d)

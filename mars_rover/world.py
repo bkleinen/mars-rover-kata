@@ -52,6 +52,7 @@ class World:
             raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
 
     def next_state(self, rover_state, command):
+        delta = rover_state.delta_square(command)
         deltas = {
             'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
             'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
