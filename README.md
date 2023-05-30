@@ -1,3 +1,56 @@
+# Mars Rover Kata Solution
+
+see e.g. https://kata-log.rocks/mars-rover-kata
+
+This is my solution of the mars rover kata in python.
+
+I developed it using TDD.
+
+I've implemented both a square World and a Planet with Poles.
+
+```mermaid
+classDiagram
+    World <|-- Planet
+    class World{
+        int width
+        int height
+        add_obstacle()
+        RoverState next(rover_state, command)
+    }
+    class Rover{
+        RoverState rover_state
+        World world
+        execute(Command)
+        RoverState position()
+    }
+    Rover *-- RoverState
+    RoverState *-- Position
+    Rover --> World
+    
+    class RoverState{
+      Position pos
+      str direction
+      
+    }
+    class Position{
+      int x
+      int y
+    }
+
+    Command <|-- MoveCommand
+    Command <|-- TurnCommand
+    MoveCommand ..> World
+
+```
+
+
+https://mermaid.js.org/syntax/classDiagram.html
+
+## Planet Implementation
+
+-testcases = [
+-    T(Planet,12,RS(1,1,"N"), "f", RS(1,2,"N"), ),
+-    T(World,12,RS(1,11,"N"), "f", RS(1,0,"N"), xfail=False),
 ## Crossing the poles
 
 n: number of longitudes 
