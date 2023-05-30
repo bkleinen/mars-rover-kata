@@ -26,14 +26,5 @@ class TurnCommand(Command):
     
     def execute(self, state, _world):
         new_direction = state.get_direction().turn(self.command)
-        new_direction = self.get_new_direction(state.direction, self.command)
         return dataclasses.replace(state, direction=new_direction)
 
-    directions = ["N", "E", "S", "W"]
-    turn = {'r' : 1, 'l': -1}
-    def get_new_direction(self, direction, command):
-        i = self.directions.index(direction)
-        delta = self.turn[command]
-        new_index = (i + delta) % len(self.directions)
-        new_direction = self.directions[new_index]
-        return new_direction

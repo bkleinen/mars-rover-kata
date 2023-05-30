@@ -24,9 +24,16 @@ class Direction:
         delta = deltas[command][self.direction_str]
         return delta
 
+
+    directions = ["N", "E", "S", "W"]
+    turns = {'r' : 1, 'l': -1}
     def turn(self, command):
         pass
-
+        i = self.directions.index(self.direction_str)
+        delta_i = self.turns[command]
+        new_index = (i + delta_i) % len(self.directions)
+        new_direction = self.directions[new_index]
+        return new_direction
 
 @dataclass(frozen=False)
 class RoverState:
