@@ -82,7 +82,6 @@ classDiagram
     Command <|-- TurnCommand
     Command ..> RoverState
     MoveCommand ..> World
-    #TurnCommand ..> Direction
     class Command{
       execute(rover_state, world)
     }
