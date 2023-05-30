@@ -108,6 +108,7 @@ class RoverState:
     
     def replace(self, **kwargs):
         if 'direction' in kwargs.keys():
+            raise AttributeError("deprecated")
             kwargs['orientation'] = Orientation[kwargs['direction']]
             kwargs.pop('direction')
         return dataclasses_replace(self, **kwargs)
