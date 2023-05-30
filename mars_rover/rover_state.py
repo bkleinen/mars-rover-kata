@@ -98,7 +98,7 @@ class RoverState:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
 
     def delta(self, command):
-        return self.direction_new.delta(command)
+        return self.orientation.delta(command)
     
     def replace(self, **kwargs):
         return dataclasses_replace(self, **kwargs)
