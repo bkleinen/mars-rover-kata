@@ -23,7 +23,8 @@ class Orientation(Enum):
     def for_number(cls, i):
         return Orientation(i % 4)
 
-    def turn(self, turns):
+    def turn(self, command):
+        turns = {'r' : 1, 'l': -1}[command] 
         return self.__class__.for_number(self.value + turns)
     
     @classmethod
@@ -88,7 +89,7 @@ class RoverState:
     orientation: Direction = field(init=False)
     def __post_init__(self):
         self.direction_new = Direction(self.direction)
-        self.orientation = Direction(self.direction)
+        self.orientation = Orientation[self.direction]
 
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.direction}')"
@@ -103,6 +104,9 @@ class RoverState:
         return self.orientation
     
     def replace(self, **kwargs):
+        if 'orientation' in kwargs.keys():
+            kwargs['direction'] = kwargs['orientation'].name
+            kwargs.pop('orientation')
         return dataclasses_replace(self, **kwargs)
     
 
