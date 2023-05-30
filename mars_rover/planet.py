@@ -1,5 +1,5 @@
 from mars_rover.rover import World
-from mars_rover.rover_state import Position as P
+from mars_rover.rover_state import Position as P, Orientation as Rose
 from dataclasses import replace
 
 
@@ -15,26 +15,23 @@ class Planet(World):
         
         return self.next_on_pole(rover_state, command)
 
-    northpole_turns = {
-            'f': {'E': 1, 'N' : 2, 'W': 3, 'S': 0},
-            'b': {'E': 3, 'N' : 0, 'W': 1, 'S': 2}}
-    southpole_turns = {
-            'f': {'E': 1, 'N' : 0, 'W': 3, 'S': 2},
-            'b': {'E': 3, 'N' : 2, 'W': 1, 'S': 0}}
         
-    def next_on_pole(self, rover_state, command): 
+    def next_on_pole(self, rover_state, command):
+        
         if self.on_north_pole(rover_state.pos):
-            turns = self.northpole_turns[command]
+            pole = Rose.N
+            
             new_y = self.height-2
-            new_direction = 'S' if command == 'f' else 'N'
+            new_orientation = Rose.S if command == 'f' else Rose.N
         else:
-            turns = self.southpole_turns[command]
+            pole = Rose.S
             new_y = 1
-            new_direction = 'N' if command == 'f' else 'S'
+            new_orientation = Rose.N if command == 'f' else Rose.S
         
-        new_x = self.turn(rover_state.pos.x,turns[rover_state.direction])   
-        return replace(rover_state, pos=P(new_x, new_y), direction=new_direction)
-
+        quarter_turns = rover_state.orientation.quarter_turns_for_on(command, pole)
+        new_x = self.quarter_turn(rover_state.pos.x, quarter_turns)   
+        return rover_state.replace(pos=P(new_x, new_y), orientation=new_orientation)
+    
     def on_pole(self, pos):
         return self.on_north_pole(pos) or self.on_south_pole(pos)
     
@@ -44,7 +41,7 @@ class Planet(World):
     def on_south_pole(self, pos):
         return pos.y == 0
     
-    def turn(self, x, quarters):
+    def quarter_turn(self, x, quarters):
         quarter = self.width/4
         return int((x + quarters * quarter) % self.width)
     

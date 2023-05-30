@@ -52,13 +52,9 @@ class World:
             raise ObstacleEncountered(f' obstacle at {new_pos.x}, {new_pos.y}: {obstacle}')
 
     def next_state(self, rover_state, command):
-        deltas = {
-            'f' :  {'N' : P(0,1), 'S' : P(0,-1), 'W' : P(-1, 0), 'E': P(1, 0)},
-            'b' :  {'N' : P(0,-1), 'S' : P(0,1), 'W' : P(1, 0), 'E': P(-1, 0)}
-        }
-        delta = deltas[command][rover_state.direction]
+        delta = rover_state.orientation.delta(command)
         new_pos = self.wrap(rover_state.pos + delta)
-        return replace(rover_state, pos=new_pos)
+        return rover_state.replace(pos=new_pos)
     
       
 
