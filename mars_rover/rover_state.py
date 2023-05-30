@@ -24,6 +24,8 @@ class Direction:
         delta = deltas[command][self.direction_str]
         return delta
 
+    def turn(self, command):
+        pass
 
 
 @dataclass(frozen=False)
@@ -40,7 +42,8 @@ class RoverState:
     def delta(self, command):
         return self.direction_new.delta(command)
 
-
+    def get_direction(self):
+        return self.direction_new
 
 # shorthand factory for RoverState:
 def RS(x,y,d):
