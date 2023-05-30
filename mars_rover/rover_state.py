@@ -87,7 +87,7 @@ class Direction:
 @dataclass(frozen=False)
 class RoverState:
     pos: Position
-    orientation: Direction
+    orientation: Orientation
 
     def __repr__(self) -> str:
         return f"RS({self.pos.x},{self.pos.y},'{self.orientation.name}')"
